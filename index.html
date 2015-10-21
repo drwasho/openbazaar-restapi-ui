@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Openbazaar-restapi-ui by drwasho</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-  </head>
-  
-  <body>
-  <div class="container">
+</head>
+
+<body>
+	<div class="container">
     
     <div class="header clearfix">
     	<h2 class="text-muted">OpenBazaar API Page</h2>
   	</div>
-  	
-  	<!-- GETTING STARTED -->
+
+  	<!-- GET STARTED -->
   	<div class="row marketing">
   		<h4>Getting Started</h4>
   		<b>You must be running</b> the <a href="https://github.com/OpenBazaar/OpenBazaar-Server" target="_blank">OpenBazaar server</a> for this page to work!
@@ -29,13 +30,13 @@
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/profile" method="post" enctype="multipart/form-data" id="profile" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Name:</row>
-				<row class="col-lg-7"><input id="name" name="name" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="name" name="name" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Handle:</row>
-				<row class="col-lg-7"><input id="handle" name="handle" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="handle" name="handle" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">About:</row>
-				<row class="col-lg-7"><input id="about" name="about" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="about" name="about" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Short Description:</row>
-				<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Location:</row>
 				<row class="col-lg-7">
 					<select id="location" name="location" >
@@ -44,9 +45,9 @@
 					</select>
 				</row></br></br>
 				<row class="col-lg-5">Website:</row>
-				<row class="col-lg-7"><input id="website" name="website" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="website" name="website" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Email:</row>
-				<row class="col-lg-7"><input id="email" name="email" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="email" name="email" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Vendor:</row>
 				<row class="col-lg-7">
 					<select id="vendor" name="vendor" >
@@ -148,7 +149,7 @@
     	<p>&copy; OB1 Company 2015</p>
 	</footer>
 
-  </div> <!-- /container -->
+	</div> <!-- /container -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -156,9 +157,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- REST API Form Script -->
     <script>
-    	$('#profile').submit(function() {
-    		$('input[name,value=""]').attr('name',"");
-    	});
+
     	$('#follow').submit(function() {
     		if ($.trim($("#followme").val()) === "") {
     			alert('You did not enter a GUID');
