@@ -81,9 +81,9 @@
 					</select>
 				</row></br></br>
 				<row class="col-lg-5">Username:</row>
-				<row class="col-lg-7"><input id="username" name="username" autocomplete="off" id="username"></row></br></br>
+				<row class="col-lg-7"><input id="username" name="username" autocomplete="off" id="username" required></row></br></br>
 				<row class="col-lg-5">Proof URL:</row>
-				<row class="col-lg-7"><input id="proof" name="proof" autocomplete="off" id="proof"></row></br></br>
+				<row class="col-lg-7"><input id="proof" name="proof" autocomplete="off" id="proof" required></row></br></br>
 				<row class="col-lg-12"><input type="submit" value="Submit" /></row>
 			</form>
 	    </div>
@@ -95,7 +95,7 @@
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/follow" method="post" enctype="multipart/form-data" id="follow" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Follow:</row>
-				<row class="col-lg-7"><input id="follow_user" name="guid" autocomplete="off" placeholder=" GUID" id="followme"></row></br>
+				<row class="col-lg-7"><input id="follow_user" name="guid" autocomplete="off" placeholder=" GUID" id="followme" required></row></br>
 				<row class="col-lg-12"><input type="submit" value="Submit" id="yo"/></row>
 			</form>
 		</div>
@@ -106,7 +106,7 @@
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/unfollow" method="post" enctype="multipart/form-data" id="unfollow" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Unfollow:</row>
-				<row class="col-lg-7"><input id="unfollow_user" name="guid" autocomplete="off" placeholder=" GUID" id="unfollowme"></row></br>
+				<row class="col-lg-7"><input id="unfollow_user" name="guid" autocomplete="off" placeholder=" GUID" id="unfollowme" required></row></br>
 				<row class="col-lg-12"><input type="submit" value="Submit"/></row>
 			</form>
 		</div>
@@ -157,25 +157,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- REST API Form Script -->
     <script>
-
-    	$('#follow').submit(function() {
-    		if ($.trim($("#followme").val()) === "") {
-    			alert('You did not enter a GUID');
-    			return false;
-    			}
-    		});
-    	$('#unfollow').submit(function() {
-    		if ($.trim($("#unfollowme").val()) === "") {
-    			alert('You did not enter a GUID');
-    			return false;
-    			}
-    		});
-    	$('#social_accounts').submit(function() {
-			if ($.trim($("#username").val()) === "" || $.trim($("#proof").val()) === "") {
-    			alert('You did not enter a username or proof URL');
-    			return false;
-    			}
-    		});
     	function selectImageType(id) {
     		var das = document.getElementById("image_type").value;
     		document.getElementById("image_file").setAttribute("name", das);
