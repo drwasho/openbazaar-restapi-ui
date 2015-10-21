@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>OpenBazaar API Page</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<div class="container">
+    
+    <div class="header clearfix">
+    	<h2 class="text-muted">OpenBazaar API Page</h2>
+  	</div>
+
+  	<!-- PROFILE -->
+  	<div class="row marketing">
+		<h3>Update Your Profile</h3>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/profile" method="post" enctype="multipart/form-data" id="profile" class="navbar-form" target="_blank">
+				<row class="col-lg-5">Name:</row>
+				<row class="col-lg-7"><input id="name" name="name" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Handle:</row>
+				<row class="col-lg-7"><input id="handle" name="handle" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">About:</row>
+				<row class="col-lg-7"><input id="about" name="about" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Short Description:</row>
+				<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Location:</row>
+				<row class="col-lg-7">
+					<select id="location" name="location" >
+						<option value="NA">NA</option>
+						<option value="AUSTRALIA">AUSTRALIA</option>
+					</select>
+				</row></br></br>
+				<row class="col-lg-5">Website:</row>
+				<row class="col-lg-7"><input id="website" name="website" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Email:</row>
+				<row class="col-lg-7"><input id="email" name="email" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Vendor:</row>
+				<row class="col-lg-7">
+					<select id="vendor" name="vendor" >
+						<option value="true">true</option>
+						<option value="false">false</option>
+					</select>
+				</row></br></br>
+				<row class="col-lg-5">NSFW:</row>
+				<row class="col-lg-7">
+					<select id="nsfw" name="nsfw" >
+						<option value="true">true</option>
+						<option value="false">false</option>
+					</select>
+				</row></br></br>	
+				<row class="col-lg-12"><input type="submit" value="Submit" /></row>
+			</form>
+	    </div>
+    </div>
+
+  	<!-- SOCIAL ACCOUNTS -->
+  	<div class="row marketing">
+		<h3>Add Social Accounts</h3>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/social_accounts" method="post" enctype="multipart/form-data" id="social_accounts" class="navbar-form" target="_blank">
+				<row class="col-lg-5">Select Social Account:</row>
+				<row class="col-lg-7">
+					<select id="account_type" name="account_type" >
+						<option value="facebook">Facebook</option>
+						<option value="snapchat">Snapchat</option>
+						<option value="twitter">Twitter</option>
+					</select>
+				</row></br></br>
+				<row class="col-lg-5">Username:</row>
+				<row class="col-lg-7"><input id="username" name="username" autocomplete="off" id="username"></row></br></br>
+				<row class="col-lg-5">Proof URL:</row>
+				<row class="col-lg-7"><input id="proof" name="proof" autocomplete="off" id="proof"></row></br></br>
+				<row class="col-lg-12"><input type="submit" value="Submit" /></row>
+			</form>
+	    </div>
+    </div>
+
+    <!-- FOLLOW/UNFOLLOW USERS -->
+  	<div class="row marketing">
+		<h3>Follow/Unfollow User</h3>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/follow" method="post" enctype="multipart/form-data" id="follow" class="navbar-form" target="_blank">
+				<row class="col-lg-5">Follow:</row>
+				<row class="col-lg-7"><input id="follow_user" name="guid" autocomplete="off" placeholder=" GUID" id="followme"></row></br>
+				<row class="col-lg-12"><input type="submit" value="Submit" id="yo"/></row>
+			</form>
+		</div>
+		</br>
+		</br>
+		</br>
+		</br>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/unfollow" method="post" enctype="multipart/form-data" id="unfollow" class="navbar-form" target="_blank">
+				<row class="col-lg-5">Unfollow:</row>
+				<row class="col-lg-7"><input id="unfollow_user" name="guid" autocomplete="off" placeholder=" GUID" id="unfollowme"></row></br>
+				<row class="col-lg-12"><input type="submit" value="Submit"/></row>
+			</form>
+		</div>
+	</div>
+
+	<!-- UPLOAD IMAGES -->
+	  	<div class="row marketing">
+		<h3>Upload Images</h3>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/upload_image" method="post" enctype="multipart/form-data" id="image_upload" class="navbar-form" target="_blank">
+				<row class="col-lg-5">Select Image Type:</row>
+				<row class="col-lg-7">
+					<select id="image_type" name="type" onchange="selectImageType()">
+						<option value="image">Product Image</option>
+						<option value="avatar">Avatar</option>
+						<option value="header">Header</option>
+					</select>
+				</row></br></br>
+				<row class="col-lg-5">Image:</row>
+				<row class="col-lg-7"><input id="image_file" type="file" name="avatar" id="image"></row></br></br>
+				<row class="col-lg-12"><input type="submit" value="Upload" /></row>
+			</form>
+	    </div>
+    </div>
+
+    <!-- SHUTDOWN -->
+	<div class="row marketing">
+		<h3>Node Control Panel</h3>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/shutdown" method="get" enctype="multipart/form-data" id="shutdown" class="navbar-form navbar-left" target="_blank">
+				<row class="col-lg-12"><input type="submit" value="Shutdown"/></row>
+			</form>
+		</div>
+	</div>
+
+	</br>
+	</br>
+
+    <footer class="footer">
+    	<p>&copy; OB1 Company 2015</p>
+	</footer>
+
+	</div> <!-- /container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- REST API Form Script -->
+    <script>
+    	$('#profile').submit(function() {
+    		$('input[name,value=""]').attr('name',"");
+    	});
+    	$('#follow').submit(function() {
+    		if ($.trim($("#followme").val()) === "") {
+    			alert('You did not enter a GUID');
+    			return false;
+    			}
+    		});
+    	$('#unfollow').submit(function() {
+    		if ($.trim($("#unfollowme").val()) === "") {
+    			alert('You did not enter a GUID');
+    			return false;
+    			}
+    		});
+    	$('#social_accounts').submit(function() {
+			if ($.trim($("#username").val()) === "" || $.trim($("#proof").val()) === "") {
+    			alert('You did not enter a username or proof URL');
+    			return false;
+    			}
+    		});
+    	function selectImageType(id) {
+    		var das = document.getElementById("image_type").value;
+    		document.getElementById("image_file").setAttribute("name", das);
+    	};
+    </script>
+
+
+</body>
+  
+</html>
