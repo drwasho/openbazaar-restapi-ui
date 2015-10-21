@@ -5,18 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>OpenBazaar API Page</title>
-
+    <title>Openbazaar-restapi-ui by drwasho</title>
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
 </head>
 
 <body>
@@ -26,19 +18,25 @@
     	<h2 class="text-muted">OpenBazaar API Page</h2>
   	</div>
 
+  	<!-- GET STARTED -->
+  	<div class="row marketing">
+  		<h2>Getting Started</h2>
+  		<b>You must be running</b> the <a href="https://github.com/OpenBazaar/OpenBazaar-Server" target="_blank">OpenBazaar server</a> for this page to work!
+  	</div>
+
   	<!-- PROFILE -->
   	<div class="row marketing">
 		<h3>Update Your Profile</h3>
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/profile" method="post" enctype="multipart/form-data" id="profile" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Name:</row>
-				<row class="col-lg-7"><input id="name" name="name" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="name" name="name" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Handle:</row>
-				<row class="col-lg-7"><input id="handle" name="handle" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="handle" name="handle" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">About:</row>
-				<row class="col-lg-7"><input id="about" name="about" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="about" name="about" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Short Description:</row>
-				<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Location:</row>
 				<row class="col-lg-7">
 					<select id="location" name="location" >
@@ -47,9 +45,9 @@
 					</select>
 				</row></br></br>
 				<row class="col-lg-5">Website:</row>
-				<row class="col-lg-7"><input id="website" name="website" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="website" name="website" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Email:</row>
-				<row class="col-lg-7"><input id="email" name="email" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="email" name="email" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Vendor:</row>
 				<row class="col-lg-7">
 					<select id="vendor" name="vendor" >
@@ -83,9 +81,9 @@
 					</select>
 				</row></br></br>
 				<row class="col-lg-5">Username:</row>
-				<row class="col-lg-7"><input id="username" name="username" autocomplete="off" id="username"></row></br></br>
+				<row class="col-lg-7"><input id="username" name="username" autocomplete="off" id="username" required></row></br></br>
 				<row class="col-lg-5">Proof URL:</row>
-				<row class="col-lg-7"><input id="proof" name="proof" autocomplete="off" id="proof"></row></br></br>
+				<row class="col-lg-7"><input id="proof" name="proof" autocomplete="off" id="proof" required></row></br></br>
 				<row class="col-lg-12"><input type="submit" value="Submit" /></row>
 			</form>
 	    </div>
@@ -97,7 +95,7 @@
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/follow" method="post" enctype="multipart/form-data" id="follow" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Follow:</row>
-				<row class="col-lg-7"><input id="follow_user" name="guid" autocomplete="off" placeholder=" GUID" id="followme"></row></br>
+				<row class="col-lg-7"><input id="follow_user" name="guid" autocomplete="off" placeholder=" GUID" id="followme" required></row></br>
 				<row class="col-lg-12"><input type="submit" value="Submit" id="yo"/></row>
 			</form>
 		</div>
@@ -108,7 +106,7 @@
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/unfollow" method="post" enctype="multipart/form-data" id="unfollow" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Unfollow:</row>
-				<row class="col-lg-7"><input id="unfollow_user" name="guid" autocomplete="off" placeholder=" GUID" id="unfollowme"></row></br>
+				<row class="col-lg-7"><input id="unfollow_user" name="guid" autocomplete="off" placeholder=" GUID" id="unfollowme" required></row></br>
 				<row class="col-lg-12"><input type="submit" value="Submit"/></row>
 			</form>
 		</div>
@@ -156,30 +154,9 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- REST API Form Script -->
     <script>
-    	$('#profile').submit(function() {
-    		$('input[name,value=""]').attr('name',"");
-    	});
-    	$('#follow').submit(function() {
-    		if ($.trim($("#followme").val()) === "") {
-    			alert('You did not enter a GUID');
-    			return false;
-    			}
-    		});
-    	$('#unfollow').submit(function() {
-    		if ($.trim($("#unfollowme").val()) === "") {
-    			alert('You did not enter a GUID');
-    			return false;
-    			}
-    		});
-    	$('#social_accounts').submit(function() {
-			if ($.trim($("#username").val()) === "" || $.trim($("#proof").val()) === "") {
-    			alert('You did not enter a username or proof URL');
-    			return false;
-    			}
-    		});
     	function selectImageType(id) {
     		var das = document.getElementById("image_type").value;
     		document.getElementById("image_file").setAttribute("name", das);
