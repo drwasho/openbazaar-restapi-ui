@@ -24,30 +24,31 @@
   		<b>You must be running</b> the <a href="https://github.com/OpenBazaar/OpenBazaar-Server" target="_blank">OpenBazaar server</a> for this page to work!
   	</div>
 
-  	<!-- PROFILE -->
+  	<!-- UPDATE PROFILE -->
   	<div class="row marketing">
 		<h3>Update Your Profile</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/profile" method="post" enctype="multipart/form-data" id="profile" class="navbar-form" target="_blank">
+			<form action="http://localhost:18469/api/v1/profile" method="post" enctype="multipart/form-data" id="profile" class="navbar-form remove-empty-values" target="_blank">
 				<row class="col-lg-5">Name:</row>
-				<row class="col-lg-7"><input id="name" name="name" autocomplete="off" required></row></br></br>
+				<row class="col-lg-7"><input id="name" name="name" autocomplete="off"></row></br></br>
 				<row class="col-lg-5">Handle:</row>
-				<row class="col-lg-7"><input id="handle" name="handle" autocomplete="off" required></row></br></br>
+				<row class="col-lg-7"><input id="handle" name="handle" autocomplete="off"></row></br></br>
 				<row class="col-lg-5">About:</row>
-				<row class="col-lg-7"><input id="about" name="about" autocomplete="off" required></row></br></br>
+				<row class="col-lg-7"><input id="about" name="about" autocomplete="off"></row></br></br>
 				<row class="col-lg-5">Short Description:</row>
-				<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off" required></row></br></br>
+				<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off"></row></br></br>
 				<row class="col-lg-5">Location:</row>
 				<row class="col-lg-7">
 					<select id="location" name="location" >
 						<option value="NA">NA</option>
-						<option value="AUSTRALIA">AUSTRALIA</option>
+						<option value="AUSTRALIA">Australia</option>
+						<option value="UNITED_STATES">United States</option>
 					</select>
 				</row></br></br>
 				<row class="col-lg-5">Website:</row>
-				<row class="col-lg-7"><input id="website" name="website" autocomplete="off" required></row></br></br>
+				<row class="col-lg-7"><input id="website" name="website" autocomplete="off"></row></br></br>
 				<row class="col-lg-5">Email:</row>
-				<row class="col-lg-7"><input id="email" name="email" autocomplete="off" required></row></br></br>
+				<row class="col-lg-7"><input id="email" name="email" autocomplete="off"></row></br></br>
 				<row class="col-lg-5">Vendor:</row>
 				<row class="col-lg-7">
 					<select id="vendor" name="vendor" >
@@ -62,7 +63,19 @@
 						<option value="false">false</option>
 					</select>
 				</row></br></br>	
-				<row class="col-lg-12"><input type="submit" value="Submit" /></row>
+				<row class="col-lg-12"><input type="submit" value="Submit"/></row>
+			</form>
+	    </div>
+    </div>
+
+    <!-- VIEW PROFILE -->
+	  	<div class="row marketing">
+		<h3>View Profile</h3>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/profile" method="get" enctype="multipart/form-data" id="view_profile" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				<row class="col-lg-5">GUID:</row>
+				<row class="col-lg-7"><input id="view_guid" name="guid"></row></br></br>
+				<row class="col-lg-12"><input type="submit" value="View" /></row>
 			</form>
 	    </div>
     </div>
@@ -71,7 +84,7 @@
   	<div class="row marketing">
 		<h3>Add Social Accounts</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/social_accounts" method="post" enctype="multipart/form-data" id="social_accounts" class="navbar-form" target="_blank">
+			<form action="http://localhost:18469/api/v1/social_accounts" method="post" enctype="multipart/form-data" id="social_accounts" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
 				<row class="col-lg-5">Select Social Account:</row>
 				<row class="col-lg-7">
 					<select id="account_type" name="account_type" >
@@ -81,9 +94,9 @@
 					</select>
 				</row></br></br>
 				<row class="col-lg-5">Username:</row>
-				<row class="col-lg-7"><input id="username" name="username" autocomplete="off" id="username" required></row></br></br>
+				<row class="col-lg-7"><input id="username" name="username" autocomplete="off" id="username"></row></br></br>
 				<row class="col-lg-5">Proof URL:</row>
-				<row class="col-lg-7"><input id="proof" name="proof" autocomplete="off" id="proof" required></row></br></br>
+				<row class="col-lg-7"><input id="proof" name="proof" autocomplete="off" id="proof"></row></br></br>
 				<row class="col-lg-12"><input type="submit" value="Submit" /></row>
 			</form>
 	    </div>
@@ -112,6 +125,18 @@
 		</div>
 	</div>
 
+	<!-- VIEW LISTINGS -->
+	  	<div class="row marketing">
+		<h3>View Listings</h3>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/get_listings" method="get" enctype="multipart/form-data" id="get_listings" class="navbar-form remove-empty-fields" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				<row class="col-lg-5">GUID:</row>
+				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
+				<row class="col-lg-12"><input type="submit" value="Fetch" /></row>
+			</form>
+	    </div>
+    </div>
+
 	<!-- UPLOAD IMAGES -->
 	  	<div class="row marketing">
 		<h3>Upload Images</h3>
@@ -136,11 +161,11 @@
 	  	<div class="row marketing">
 		<h3>View Images</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/get_image" method="get" enctype="multipart/form-data" id="get_image" class="navbar-form" target="_blank">
+			<form action="http://localhost:18469/api/v1/get_image" method="get" enctype="multipart/form-data" id="get_image" class="navbar-form remove-empty-fields" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
 				<row class="col-lg-5">GUID:</row>
 				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
 				<row class="col-lg-5">Image Hash:</row>
-				<row class="col-lg-7"><input id="target_image_hash" name="hash"></row></br></br>
+				<row class="col-lg-7"><input id="target_image_hash" name="hash" required></row></br></br>
 				<row class="col-lg-12"><input type="submit" value="Fetch" /></row>
 			</form>
 	    </div>
@@ -175,6 +200,18 @@
     		var das = document.getElementById("image_type").value;
     		document.getElementById("image_file").setAttribute("name", das);
     	};
+    	$(document).ready(function() {
+  			$('.remove-empty-values').submit(function() {
+    			$(this).find(':input').filter(function() { return !this.value; }).attr('disabled', 'disabled');
+    			return true; // make sure that the form is still submitted
+  			});
+		});
+		$(document).ready(function() {
+  			$('.remove-empty-values').submit(function() {
+    			$(this).find(':input').filter(function() { return !this.value; }).attr('disabled', 'disabled');
+    			return true; // make sure that the form is still submitted
+  			});
+		});
     </script>
 
 
