@@ -15,7 +15,7 @@
 	<div class="container">
     
     <div class="header clearfix">
-    	<h2 class="text-muted">OpenBazaar REST API Page</h2>
+    	<h2 class="text-muted">OpenBazaar REST API Browser UI</h2>
   	</div>
 
   	<!-- GET STARTED -->
@@ -63,7 +63,7 @@
 						<option value="false">false</option>
 					</select>
 				</row></br></br>	
-				<row class="col-lg-12"><input type="submit" value="Submit"/></row>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
 			</form>
 	    </div>
     </div>
@@ -73,9 +73,10 @@
 		<h3>View Profile</h3>
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/profile" method="get" enctype="multipart/form-data" id="view_profile" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				<row class="col-lg-12"><label>If the GUID field is empty, your own profile will be queried.</label></row></br></br>
 				<row class="col-lg-5">GUID:</row>
 				<row class="col-lg-7"><input id="view_guid" name="guid"></row></br></br>
-				<row class="col-lg-12"><input type="submit" value="View" /></row>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="View" /></row>
 			</form>
 	    </div>
     </div>
@@ -84,7 +85,7 @@
   	<div class="row marketing">
 		<h3>Add Social Accounts</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/social_accounts" method="post" enctype="multipart/form-data" id="social_accounts" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+			<form action="http://localhost:18469/api/v1/social_accounts" method="post" enctype="multipart/form-data" id="social_accounts" class="navbar-form" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
 				<row class="col-lg-5">Select Social Account:</row>
 				<row class="col-lg-7">
 					<select id="account_type" name="account_type" >
@@ -94,10 +95,10 @@
 					</select>
 				</row></br></br>
 				<row class="col-lg-5">Username:</row>
-				<row class="col-lg-7"><input id="username" name="username" autocomplete="off" id="username"></row></br></br>
+				<row class="col-lg-7"><input id="username" name="username" autocomplete="off" id="username" required></row></br></br>
 				<row class="col-lg-5">Proof URL:</row>
-				<row class="col-lg-7"><input id="proof" name="proof" autocomplete="off" id="proof"></row></br></br>
-				<row class="col-lg-12"><input type="submit" value="Submit" /></row>
+				<row class="col-lg-7"><input id="proof" name="proof" autocomplete="off" id="proof" required></row></br></br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit" /></row>
 			</form>
 	    </div>
     </div>
@@ -109,7 +110,7 @@
 			<form action="http://localhost:18469/api/v1/follow" method="post" enctype="multipart/form-data" id="follow" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Follow:</row>
 				<row class="col-lg-7"><input id="follow_user" name="guid" autocomplete="off" placeholder=" GUID" id="followme" required></row></br>
-				<row class="col-lg-12"><input type="submit" value="Submit" id="yo"/></row>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit" id="yo"/></row>
 			</form>
 		</div>
 		</br>
@@ -120,7 +121,7 @@
 			<form action="http://localhost:18469/api/v1/unfollow" method="post" enctype="multipart/form-data" id="unfollow" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Unfollow:</row>
 				<row class="col-lg-7"><input id="unfollow_user" name="guid" autocomplete="off" placeholder=" GUID" id="unfollowme" required></row></br>
-				<row class="col-lg-12"><input type="submit" value="Submit"/></row>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
 			</form>
 		</div>
 	</div>
@@ -130,9 +131,10 @@
 		<h3>View Listings</h3>
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/get_listings" method="get" enctype="multipart/form-data" id="get_listings" class="navbar-form remove-empty-fields" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				<row class="col-lg-12"><label>If the GUID field is empty, your own listings will be shown.</label></row></br></br>
 				<row class="col-lg-5">GUID:</row>
 				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
-				<row class="col-lg-12"><input type="submit" value="Fetch" /></row>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Fetch" /></row>
 			</form>
 	    </div>
     </div>
@@ -152,7 +154,7 @@
 				</row></br></br>
 				<row class="col-lg-5">Image:</row>
 				<row class="col-lg-7"><input id="image_file" type="file" name="avatar" id="image"></row></br></br>
-				<row class="col-lg-12"><input type="submit" value="Upload" /></row>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Upload" /></row>
 			</form>
 	    </div>
     </div>
@@ -162,11 +164,12 @@
 		<h3>View Images</h3>
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/get_image" method="get" enctype="multipart/form-data" id="get_image" class="navbar-form remove-empty-fields" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				<row class="col-lg-12"><label>If the GUID field is empty, your own images will be queried.</label></row></br></br>
 				<row class="col-lg-5">GUID:</row>
 				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
 				<row class="col-lg-5">Image Hash:</row>
 				<row class="col-lg-7"><input id="target_image_hash" name="hash" required></row></br></br>
-				<row class="col-lg-12"><input type="submit" value="Fetch" /></row>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Fetch" /></row>
 			</form>
 	    </div>
     </div>
@@ -176,7 +179,7 @@
 		<h3>Node Control Panel</h3>
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/shutdown" method="get" enctype="multipart/form-data" id="shutdown" class="navbar-form navbar-left" target="_blank">
-				<row class="col-lg-12"><input type="submit" value="Shutdown"/></row>
+				<row class="col-lg-12"><input class="btn btn-danger" type="submit" value="Shutdown"/></row>
 			</form>
 		</div>
 	</div>
