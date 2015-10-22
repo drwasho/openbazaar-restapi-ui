@@ -12,7 +12,7 @@
 </head>
 
 <body>
-	<div class="container">
+<div class="container">
     
     <div class="header clearfix">
     	<h2 class="text-muted">OpenBazaar REST API Browser UI</h2>
@@ -41,6 +41,8 @@
 				<row class="col-lg-7"><input id="about" name="about" autocomplete="off"></row></br></br>
 				<row class="col-lg-5">Short Description:</row>
 				<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Avatar (image hash):</row>
+				<row class="col-lg-7"><input id="avatar_image_hash" name="avatar" autocomplete="off"></row></br></br>
 				<row class="col-lg-5">Location:</row>
 				<row class="col-lg-7">
 					<select id="location" name="location" >
@@ -96,6 +98,7 @@
 						<option value="facebook">Facebook</option>
 						<option value="snapchat">Snapchat</option>
 						<option value="twitter">Twitter</option>
+						<option value="instagram">Instagram</option>
 					</select>
 				</row></br></br>
 				<row class="col-lg-5">Username:</row>
@@ -103,6 +106,21 @@
 				<row class="col-lg-5">Proof URL:</row>
 				<row class="col-lg-7"><input id="proof" name="proof" autocomplete="off" id="proof" required></row></br></br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit" /></row>
+			</form>
+	    </div>
+    </div>
+
+    <!-- MODERATOR -->
+	<div class="row marketing">
+	<h3>Become a Moderator</h3>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/make_moderator" method="post" enctype="multipart/form-data" id="become_moderator" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				<row class="col-lg-12"><input class="btn btn-info" type="submit" value="Approve" /></row>
+			</form>
+			<br>
+			<br>
+			<form action="http://localhost:18469/api/v1/unmake_moderator" method="post" enctype="multipart/form-data" id="cancel_moderator" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				<row class="col-lg-12"><input class="btn btn-danger" type="submit" value="Cancel" /></row>
 			</form>
 	    </div>
     </div>
@@ -156,18 +174,138 @@
 		</div>
 	</div>
 
-
 	<!-- VIEW LISTINGS -->
-  	<div class="row marketing">
-  	<hr></hr>
-	<br>
-  	<h1>Contracts</h1>
+	<div class="row marketing">
 	<h3>View Listings</h3>
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/get_listings" method="get" enctype="multipart/form-data" id="get_listings" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
 				<row class="col-lg-12"><label>If the GUID field is empty, your own listings will be shown.</label></row></br></br>
 				<row class="col-lg-5">GUID:</row>
 				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Fetch" /></row>
+			</form>
+	    </div>
+    </div>
+
+    <!-- CONTRACTS -->
+    <!-- CREATE LISTING -->
+	<div class="row marketing">
+	<hr></hr>
+	</br>
+	<h1>Contracts</h1>
+	<h3>Create Listing</h3>
+		<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/contracts" method="post" enctype="multipart/form-data" id="create_contract" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				
+				<!-- ITEM -->
+				<h4>Item</h4>
+				<row class="col-lg-5">Title:</row>
+				<row class="col-lg-7"><input id="title" name="title" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Description:</row>
+				<row class="col-lg-7"><input id="listing_description" name="description" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Price:</row>
+				<row class="col-lg-7"><input id="price" type="number" name="price" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Currency Code:</row>
+				<row class="col-lg-7"><input id="currency_code" name="currency_code" autocomplete="off" value="BTC"></row></br></br>
+				<row class="col-lg-5">Category:</row>
+				<row class="col-lg-7"><input id="category" name="category" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Image Hash:</row>
+				<row class="col-lg-7"><input id="images" name="images" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Condition:</row>
+				<row class="col-lg-7">
+					<select id="condition" name="condition" >
+						<option value="new">New</option>
+					</select>
+				</row></br></br>
+
+				<!-- ORDER -->
+				<h4>Order</h4>
+				<row class="col-lg-5">Process Time:</row>
+				<row class="col-lg-7"><input id="process_time" type="number" name="process_time" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Terms and Conditions:</row>
+				<row class="col-lg-7"><input id="terms_conditions" name="terms_conditions" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Returns:</row>
+				<row class="col-lg-7"><input id="returns" name="returns" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">SKU:</row>
+				<row class="col-lg-7"><input id="sku" name="sku" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">NSFW:</row>
+				<row class="col-lg-7">
+					<select id="listing_nsfw" name="nsfw" >
+						<option value="true">true</option>
+						<option value="false">false</option>
+					</select>
+				</row></br></br>
+				<row class="col-lg-5">Keywords:</row>
+				<row class="col-lg-7"><input id="keywords" name="keywords" autocomplete="off"></row></br></br>
+
+				<!-- SHIPPING -->
+				<h4>Shipping</h4>
+				<row class="col-lg-5">Shipping Origin:</row>
+				<row class="col-lg-7"><input id="shipping_origin" name="shipping_origin" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Free Shipping:</row>
+				<row class="col-lg-7">
+					<select id="free_shipping" name="free_shipping" >
+						<option value="true">true</option>
+						<option value="false">false</option>
+					</select>
+				</row></br></br>
+				<row class="col-lg-5">Shipping - Domestic:</row>
+				<row class="col-lg-7">
+					<select id="shipping_domestic" name="shipping_domestic" >
+						<option value="true">true</option>
+						<option value="false">false</option>
+					</select>
+				</row></br></br>
+				<row class="col-lg-5">Estimated Delivery - Domestic:</row>
+				<row class="col-lg-7"><input id="est_delivery_domestic" type="number" name="est_delivery_domestic" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Shipping - International:</row>
+				<row class="col-lg-7">
+					<select id="shipping_international" name="shipping_international" >
+						<option value="true">true</option>
+						<option value="false">false</option>
+					</select>
+				</row></br></br>
+				<row class="col-lg-5">Estimated Delivery - International:</row>
+				<row class="col-lg-7"><input id="est_delivery_international" name="est_delivery_international" type="number" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Shipping Currency Code:</row>
+				<row class="col-lg-7">
+					<select id="shipping_currency_code" name="shipping_currency_code" >
+						<option value="BTC">BTC</option>
+					</select>
+				</row></br></br>
+
+				<!-- MODERATORS -->
+				<h4>Moderators</h4>
+				<row class="col-lg-5">Moderators (GUID):</row>
+				<row class="col-lg-7"><input id="add_moderators" name="moderators" autocomplete="off"></row></br></br>
+
+				<!-- METADATA -->
+				<h4>Metadata</h4>
+				<row class="col-lg-5">Expiration:</row>
+				<row class="col-lg-7"><input id="exp_date" name="expiration_date" autocomplete="off"></row></br></br>
+				<row class="col-lg-5">Metadata Category:</row>
+				<row class="col-lg-7"><input id="meta_category" name="metadata_category" autocomplete="off"></row></br></br>
+
+				<!-- SUBMIT BUTTON -->
+				<row class="col-lg-12"><button class="btn btn-warning col-lg-2" type="button" onclick="test()" value="Test">Test</button></row>
+				<br>
+				<br>
+				<row class="col-lg-12"><input class="btn btn-success col-lg-2" type="submit" value="Create"></row>
+			</form>
+		</div>
+	
+	</div>
+
+	<!-- VIEW CONTRACT -->
+  	<div class="row marketing">
+	<h3>View Contract</h3>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/contracts" method="get" enctype="multipart/form-data" id="get_contract" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				<row class="col-lg-12"><label>If the GUID field is empty, your own contract will be searched.</label></row></br></br>
+				<row class="col-lg-5">GUID:</row>
+				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
+				<row class="col-lg-5">Contract ID:</row>
+				<row class="col-lg-7"><input id="contract_id" name="id" required></row></br></br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Fetch" /></row>
 			</form>
 	    </div>
@@ -212,7 +350,6 @@
 	<div class="row marketing">
 	<hr></hr>
 	<br>
-	<h1>Node Control Panel</h1>
 	<h3>Safe Node Shutdown</h3>
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/shutdown" method="get" enctype="multipart/form-data" id="shutdown" class="navbar-form navbar-left" target="_blank">
@@ -228,31 +365,49 @@
     	<p>&copy; OB1 Company 2015</p>
 	</footer>
 
-	</div> <!-- /container -->
+</div> <!-- /container -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <!-- REST API Form Script -->
-    <script>
-    	function selectImageType(id) {
-    		var das = document.getElementById("image_type").value;
-    		document.getElementById("image_file").setAttribute("name", das);
-    	};
-    	$(document).ready(function() {
-  			$('.remove-empty-values').submit(function() {
-    			$(this).find(':input').filter(function() { return !this.value; }).attr('disabled', 'disabled');
-    			return true; // make sure that the form is still submitted
-  			});
-		});
-		$(document).ready(function() {
-  			$('.remove-empty-values').submit(function() {
-    			$(this).find(':input').filter(function() { return !this.value; }).attr('disabled', 'disabled');
-    			return true; // make sure that the form is still submitted
-  			});
-		});
-    </script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!-- REST API Form Script -->
+<script>
+	function selectImageType(id) {
+		var das = document.getElementById("image_type").value;
+		document.getElementById("image_file").setAttribute("name", das);
+	};
+	$(document).ready(function() {
+			$('.remove-empty-values').submit(function() {
+			$(this).find(':input').filter(function() { return !this.value; }).attr('disabled', 'disabled');
+			return true; // make sure that the form is still submitted
+			});
+	});
+	$(document).ready(function() {
+			$('.remove-empty-values').submit(function() {
+			$(this).find(':input').filter(function() { return !this.value; }).attr('disabled', 'disabled');
+			return true; // make sure that the form is still submitted
+			});
+	});
+	function test() {
+		document.getElementById("title").value = "Crap";
+		document.getElementById("listing_description").value = "Quality dog crap";
+		document.getElementById("price").value = 1;
+		document.getElementById("category").value = "Dog Feces";
+		document.getElementById("images").value = "adbaa11b6ffc14ea9a720dd875babb59354e9e36";
+		document.getElementById("process_time").value = 1;
+		document.getElementById("terms_conditions").value = "Dogs aren't liable for fecal quality. No refunds";
+		document.getElementById("returns").value = "No returns";
+		document.getElementById("sku").value = "001-dog-feces";
+		document.getElementById("keywords").value = "dog crap";
+		document.getElementById("shipping_origin").value = "AUSTRALIA";
+		document.getElementById("exp_date").value = "2016";
+		document.getElementById("meta_category").value = "Physical Good";
+		document.getElementById("est_delivery_domestic").value = 3;
+		document.getElementById("est_delivery_international").value = 30;
+		document.getElementById("add_moderators").value = "346e36f0ff583251cf3d0700e9ef96d17ee4af74";
+	};
+</script>
 
 
 </body>
