@@ -200,17 +200,17 @@
 				<!-- ITEM -->
 				<h4>Item</h4>
 				<row class="col-lg-5">Title:</row>
-				<row class="col-lg-7"><input id="title" name="title" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="title" name="title" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Description:</row>
-				<row class="col-lg-7"><input id="listing_description" name="description" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="listing_description" name="description" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Price:</row>
-				<row class="col-lg-7"><input id="price" type="number" name="price" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="price" type="number" name="price" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Currency Code:</row>
-				<row class="col-lg-7"><input id="currency_code" name="currency_code" autocomplete="off" value="BTC"></row></br></br>
+				<row class="col-lg-7"><input id="currency_code" name="currency_code" autocomplete="off" value="BTC" required></row></br></br>
 				<row class="col-lg-5">Category:</row>
-				<row class="col-lg-7"><input id="category" name="category" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="category" name="category" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Image Hash:</row>
-				<row class="col-lg-7"><input id="images" name="images" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="images" name="images" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Condition:</row>
 				<row class="col-lg-7">
 					<select id="condition" name="condition" >
@@ -221,13 +221,13 @@
 				<!-- ORDER -->
 				<h4>Order</h4>
 				<row class="col-lg-5">Process Time:</row>
-				<row class="col-lg-7"><input id="process_time" type="number" name="process_time" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="process_time" type="number" name="process_time" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Terms and Conditions:</row>
-				<row class="col-lg-7"><input id="terms_conditions" name="terms_conditions" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="terms_conditions" name="terms_conditions" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Returns:</row>
-				<row class="col-lg-7"><input id="returns" name="returns" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="returns" name="returns" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">SKU:</row>
-				<row class="col-lg-7"><input id="sku" name="sku" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="sku" name="sku" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">NSFW:</row>
 				<row class="col-lg-7">
 					<select id="listing_nsfw" name="nsfw" >
@@ -236,12 +236,12 @@
 					</select>
 				</row></br></br>
 				<row class="col-lg-5">Keywords:</row>
-				<row class="col-lg-7"><input id="keywords" name="keywords" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="keywords" name="keywords" autocomplete="off" required></row></br></br>
 
 				<!-- SHIPPING -->
 				<h4>Shipping</h4>
 				<row class="col-lg-5">Shipping Origin:</row>
-				<row class="col-lg-7"><input id="shipping_origin" name="shipping_origin" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="shipping_origin" name="shipping_origin" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Free Shipping:</row>
 				<row class="col-lg-7">
 					<select id="free_shipping" name="free_shipping" >
@@ -257,7 +257,7 @@
 					</select>
 				</row></br></br>
 				<row class="col-lg-5">Estimated Delivery - Domestic:</row>
-				<row class="col-lg-7"><input id="est_delivery_domestic" type="number" name="est_delivery_domestic" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="est_delivery_domestic" type="number" name="est_delivery_domestic" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Shipping - International:</row>
 				<row class="col-lg-7">
 					<select id="shipping_international" name="shipping_international" >
@@ -266,7 +266,7 @@
 					</select>
 				</row></br></br>
 				<row class="col-lg-5">Estimated Delivery - International:</row>
-				<row class="col-lg-7"><input id="est_delivery_international" name="est_delivery_international" type="number" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="est_delivery_international" name="est_delivery_international" type="number" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Shipping Currency Code:</row>
 				<row class="col-lg-7">
 					<select id="shipping_currency_code" name="shipping_currency_code" >
@@ -277,14 +277,14 @@
 				<!-- MODERATORS -->
 				<h4>Moderators</h4>
 				<row class="col-lg-5">Moderators (GUID):</row>
-				<row class="col-lg-7"><input id="add_moderators" name="moderators" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="add_moderators" name="moderators" autocomplete="off" required></row></br></br>
 
 				<!-- METADATA -->
 				<h4>Metadata</h4>
 				<row class="col-lg-5">Expiration:</row>
-				<row class="col-lg-7"><input id="exp_date" name="expiration_date" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="exp_date" name="expiration_date" autocomplete="off" required></row></br></br>
 				<row class="col-lg-5">Metadata Category:</row>
-				<row class="col-lg-7"><input id="meta_category" name="metadata_category" autocomplete="off"></row></br></br>
+				<row class="col-lg-7"><input id="meta_category" name="metadata_category" autocomplete="off" required></row></br></br>
 
 				<!-- SUBMIT BUTTON -->
 				<row class="col-lg-12"><button class="btn btn-warning col-lg-2" type="button" onclick="test()" value="Test">Test</button></row>
