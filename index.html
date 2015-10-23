@@ -25,67 +25,127 @@
   		<p>During development, most of the network will be using the Testnet, so run your servers using the following command: <mark>$ python openbazaard.py start --testnet</mark></p>
   	</div>
 
-  	<!-- UPDATE PROFILE -->
+  	<!-- DISCOVERY -->
+   	<!-- VIEW PROFILE -->
   	<div class="row marketing">
-  	<hr></hr>
 	<br>
-  	<h1>Profile</h1>
-		<h3>Update Your Profile</h3>
-    	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/profile" method="post" enctype="multipart/form-data" id="profile" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-5">Name:</row>
-				<row class="col-lg-7"><input id="name" name="name" autocomplete="off"></row></br></br>
-				<row class="col-lg-5">Handle:</row>
-				<row class="col-lg-7"><input id="handle" name="handle" autocomplete="off"></row></br></br>
-				<row class="col-lg-5">About:</row>
-				<row class="col-lg-7"><input id="about" name="about" autocomplete="off"></row></br></br>
-				<row class="col-lg-5">Short Description:</row>
-				<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off"></row></br></br>
-				<row class="col-lg-5">Avatar (image hash):</row>
-				<row class="col-lg-7"><input id="avatar_image_hash" name="avatar" autocomplete="off"></row></br></br>
-				<row class="col-lg-5">Location:</row>
-				<row class="col-lg-7">
-					<select id="location" name="location" >
-						<option value="NA">NA</option>
-						<option value="AUSTRALIA">Australia</option>
-						<option value="UNITED_STATES">United States</option>
-					</select>
-				</row></br></br>
-				<row class="col-lg-5">Website:</row>
-				<row class="col-lg-7"><input id="website" name="website" autocomplete="off"></row></br></br>
-				<row class="col-lg-5">Email:</row>
-				<row class="col-lg-7"><input id="email" name="email" autocomplete="off"></row></br></br>
-				<row class="col-lg-5">Vendor:</row>
-				<row class="col-lg-7">
-					<select id="vendor" name="vendor" >
-						<option value="true">true</option>
-						<option value="false">false</option>
-					</select>
-				</row></br></br>
-				<row class="col-lg-5">NSFW:</row>
-				<row class="col-lg-7">
-					<select id="nsfw" name="nsfw" >
-						<option value="true">true</option>
-						<option value="false">false</option>
-					</select>
-				</row></br></br>	
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
-			</form>
-	    </div>
-    </div>
-
-    <!-- VIEW PROFILE -->
-  	<div class="row marketing">
+  	<h1 align="right"><b>Discovery</b></h1>
+  	<hr></hr>
 	<h3>View Profile</h3>
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/profile" method="get" enctype="multipart/form-data" id="view_profile" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-12"><label>If the GUID field is empty, your own profile will be queried.</label></row></br></br>
+				<row class="col-lg-12"><label>If the GUID field is empty, your own profile will be displayed.</label></row></br></br>
 				<row class="col-lg-5">GUID:</row>
 				<row class="col-lg-7"><input id="view_guid" name="guid"></row></br></br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="View" /></row>
 			</form>
 	    </div>
     </div>
+
+	<!-- VIEW LISTINGS -->
+	<div class="row marketing">
+	<h3>View Listings</h3>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/get_listings" method="get" enctype="multipart/form-data" id="get_listings" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				<row class="col-lg-12"><label>If the GUID field is empty, your own listings will be shown.</label></row></br></br>
+				<row class="col-lg-5">GUID:</row>
+				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Fetch" /></row>
+			</form>
+	    </div>
+    </div>
+
+	<!-- VIEW CONTRACT -->
+  	<div class="row marketing">
+	<h3>View Contract</h3>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/contracts" method="get" enctype="multipart/form-data" id="get_contract" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				<row class="col-lg-12"><label>If the GUID field is empty, your own contract will be searched.</label></row></br></br>
+				<row class="col-lg-5">GUID:</row>
+				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
+				<row class="col-lg-5">Contract ID:</row>
+				<row class="col-lg-7"><input id="contract_id" name="id" required></row></br></br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Fetch" /></row>
+			</form>
+	    </div>
+    </div>
+
+    <!-- VIEW FOLLOWERS/UNFOLLOWING -->
+  	<div class="row marketing">
+		<h3>View Followers/Following</h3>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/get_followers" method="get" enctype="multipart/form-data" id="get_followers" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				<row class="col-lg-12"><label>If the GUID field is empty, your own followers or users you're following will be displayed.</label></row></br></br>
+				<row class="col-lg-5">Get Followers:</row>
+				<row class="col-lg-7"><input id="get_user_followers" name="guid" autocomplete="off" placeholder=" GUID"></row></br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
+			</form>
+		</div>
+		</br>
+		</br>
+		</br>
+		</br>
+		</br>
+		</br>
+    	<div class="col-lg-12">
+			<form action="http://localhost:18469/api/v1/get_following" method="get" enctype="multipart/form-data" id="get_following" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+				<row class="col-lg-5">Get Following:</row>
+				<row class="col-lg-7"><input id="get_user_following" name="guid" autocomplete="off" placeholder=" GUID"></row></br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
+			</form>
+		</div>
+	</div>
+
+  	<!-- PROFILE CONTROLS -->
+  	<!-- UPDATE PROFILE -->
+  	<div class="row marketing">
+	<br>
+  	<h1 align="right"><b>My Profile</b></h1>
+  	<hr></hr>
+	<h3>Update Your Profile</h3>
+	<div class="col-lg-12">
+		<form action="http://localhost:18469/api/v1/profile" method="post" enctype="multipart/form-data" id="profile" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+			<row class="col-lg-5">Name:</row>
+			<row class="col-lg-7"><input id="name" name="name" autocomplete="off"></row></br></br>
+			<row class="col-lg-5">Handle:</row>
+			<row class="col-lg-7"><input id="handle" name="handle" autocomplete="off"></row></br></br>
+			<row class="col-lg-5">About:</row>
+			<row class="col-lg-7"><input id="about" name="about" autocomplete="off"></row></br></br>
+			<row class="col-lg-5">Short Description:</row>
+			<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off"></row></br></br>
+			<row class="col-lg-5">Avatar (image hash):</row>
+			<row class="col-lg-7"><input id="avatar_image_hash" name="avatar" autocomplete="off"></row></br></br>
+			<row class="col-lg-5">Location:</row>
+			<row class="col-lg-7">
+				<select id="location" name="location" >
+					<option value="NA">NA</option>
+					<option value="AUSTRALIA">Australia</option>
+					<option value="UNITED_STATES">United States</option>
+				</select>
+			</row></br></br>
+			<row class="col-lg-5">Website:</row>
+			<row class="col-lg-7"><input id="website" name="website" autocomplete="off"></row></br></br>
+			<row class="col-lg-5">Email:</row>
+			<row class="col-lg-7"><input id="email" name="email" autocomplete="off"></row></br></br>
+			<row class="col-lg-5">Vendor:</row>
+			<row class="col-lg-7">
+				<select id="vendor" name="vendor" >
+					<option value="true">true</option>
+					<option value="false">false</option>
+				</select>
+			</row></br></br>
+			<row class="col-lg-5">NSFW:</row>
+			<row class="col-lg-7">
+				<select id="nsfw" name="nsfw" >
+					<option value="true">true</option>
+					<option value="false">false</option>
+				</select>
+			</row></br></br>	
+			<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
+		</form>
+    </div>
+    </div>
+
 
   	<!-- SOCIAL ACCOUNTS -->
   	<div class="row marketing">
@@ -148,52 +208,13 @@
 		</div>
 	</div>
 
-    <!-- VIEW FOLLOWERS/UNFOLLOWING -->
-  	<div class="row marketing">
-		<h3>View Followers/Following</h3>
-    	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/get_followers" method="get" enctype="multipart/form-data" id="get_followers" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-12"><label>If the GUID field is empty, your own followers or users you're following will be displayed.</label></row></br></br>
-				<row class="col-lg-5">Get Followers:</row>
-				<row class="col-lg-7"><input id="get_user_followers" name="guid" autocomplete="off" placeholder=" GUID"></row></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
-			</form>
-		</div>
-		</br>
-		</br>
-		</br>
-		</br>
-		</br>
-		</br>
-    	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/get_following" method="get" enctype="multipart/form-data" id="get_following" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-5">Get Following:</row>
-				<row class="col-lg-7"><input id="get_user_following" name="guid" autocomplete="off" placeholder=" GUID"></row></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
-			</form>
-		</div>
-	</div>
-
-	<!-- VIEW LISTINGS -->
-	<div class="row marketing">
-	<h3>View Listings</h3>
-    	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/get_listings" method="get" enctype="multipart/form-data" id="get_listings" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-12"><label>If the GUID field is empty, your own listings will be shown.</label></row></br></br>
-				<row class="col-lg-5">GUID:</row>
-				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Fetch" /></row>
-			</form>
-	    </div>
-    </div>
-
-    <!-- CONTRACTS -->
+    <!-- MARKET -->
     <!-- CREATE LISTING -->
 	<div class="row marketing">
-	<hr></hr>
 	</br>
-	<h1>Contracts</h1>
-	<h3>Create Listing</h3>
+	<h1 align="right"><b>Trade Flow</b></h1>
+	<hr></hr>
+	<h3><b>Stage 1:</b> Create Listing</h3>
 		<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/contracts" method="post" enctype="multipart/form-data" id="create_contract" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
 				
@@ -293,26 +314,13 @@
 				<row class="col-lg-12"><input class="btn btn-success col-lg-2" type="submit" value="Create"></row>
 			</form>
 		</div>
-	
 	</div>
-
-	<!-- VIEW CONTRACT -->
-  	<div class="row marketing">
-	<h3>View Contract</h3>
-    	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/contracts" method="get" enctype="multipart/form-data" id="get_contract" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-12"><label>If the GUID field is empty, your own contract will be searched.</label></row></br></br>
-				<row class="col-lg-5">GUID:</row>
-				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
-				<row class="col-lg-5">Contract ID:</row>
-				<row class="col-lg-7"><input id="contract_id" name="id" required></row></br></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Fetch" /></row>
-			</form>
-	    </div>
-    </div>
 
 	<!-- VIEW IMAGES -->
   	<div class="row marketing">
+  	<br>
+	<h1 align="right"><b>Images</b></h1>
+	<hr></hr>
 	<h3>View Images</h3>
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/get_image" method="get" enctype="multipart/form-data" id="get_image" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
@@ -348,8 +356,9 @@
 
     <!-- SHUTDOWN -->
 	<div class="row marketing">
-	<hr></hr>
 	<br>
+	<h1 align="right"><b>Settings</b></h1>
+	<hr></hr>
 	<h3>Safe Node Shutdown</h3>
     	<div class="col-lg-12">
 			<form action="http://localhost:18469/api/v1/shutdown" method="get" enctype="multipart/form-data" id="shutdown" class="navbar-form navbar-left" target="_blank">
