@@ -23,6 +23,7 @@
   		<h1>Getting Started</h1>
   		<p><b>You must be running</b> the <a href="https://github.com/OpenBazaar/OpenBazaar-Server" target="_blank">OpenBazaar server</a> for this page to work!</p>
   		<p>During development, most of the network will be using the Testnet, so run your servers using the following command: <mark>$ python openbazaard.py start --testnet</mark></p>
+  		<p>You can get the code for this page <a href=""
   	</div>
 
   	<!-- DISCOVERY -->
@@ -215,105 +216,105 @@
 	<h1 align="right"><b>Trade Flow</b></h1>
 	<hr></hr>
 	<h3><b>Stage 1:</b> Create Listing</h3>
-		<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/contracts" method="post" enctype="multipart/form-data" id="create_contract" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				
-				<!-- ITEM -->
-				<h4>Item</h4>
-				<row class="col-lg-5">Title:</row>
-				<row class="col-lg-7"><input id="title" name="title" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">Description:</row>
-				<row class="col-lg-7"><input id="listing_description" name="description" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">Price:</row>
-				<row class="col-lg-7"><input id="price" type="number" name="price" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">Currency Code:</row>
-				<row class="col-lg-7"><input id="currency_code" name="currency_code" autocomplete="off" value="BTC" required></row></br></br>
-				<row class="col-lg-5">Category:</row>
-				<row class="col-lg-7"><input id="category" name="category" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">Image Hash:</row>
-				<row class="col-lg-7"><input id="images" name="images" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">Condition:</row>
-				<row class="col-lg-7">
-					<select id="condition" name="condition" >
-						<option value="new">New</option>
-					</select>
-				</row></br></br>
+	<div class="col-lg-12">
+		<form action="http://localhost:18469/api/v1/contracts" method="post" enctype="multipart/form-data" id="create_contract" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+			
+			<!-- ITEM -->
+			<h4>Item</h4>
+			<row class="col-lg-5">Title:</row>
+			<row class="col-lg-7"><input id="title" name="title" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Description:</row>
+			<row class="col-lg-7"><input id="listing_description" name="description" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Price:</row>
+			<row class="col-lg-7"><input id="price" type="number" name="price" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Currency Code:</row>
+			<row class="col-lg-7"><input id="currency_code" name="currency_code" autocomplete="off" value="BTC" required></row></br></br>
+			<row class="col-lg-5">Category:</row>
+			<row class="col-lg-7"><input id="category" name="category" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Image Hash:</row>
+			<row class="col-lg-7"><input id="images" name="images" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Condition:</row>
+			<row class="col-lg-7">
+				<select id="condition" name="condition" >
+					<option value="new">New</option>
+				</select>
+			</row></br></br>
 
-				<!-- ORDER -->
-				<h4>Order</h4>
-				<row class="col-lg-5">Process Time:</row>
-				<row class="col-lg-7"><input id="process_time" type="number" name="process_time" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">Terms and Conditions:</row>
-				<row class="col-lg-7"><input id="terms_conditions" name="terms_conditions" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">Returns:</row>
-				<row class="col-lg-7"><input id="returns" name="returns" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">SKU:</row>
-				<row class="col-lg-7"><input id="sku" name="sku" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">NSFW:</row>
-				<row class="col-lg-7">
-					<select id="listing_nsfw" name="nsfw" >
-						<option value="true">true</option>
-						<option value="false">false</option>
-					</select>
-				</row></br></br>
-				<row class="col-lg-5">Keywords:</row>
-				<row class="col-lg-7"><input id="keywords" name="keywords" autocomplete="off" required></row></br></br>
+			<!-- ORDER -->
+			<h4>Order</h4>
+			<row class="col-lg-5">Process Time:</row>
+			<row class="col-lg-7"><input id="process_time" type="number" name="process_time" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Terms and Conditions:</row>
+			<row class="col-lg-7"><input id="terms_conditions" name="terms_conditions" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Returns:</row>
+			<row class="col-lg-7"><input id="returns" name="returns" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">SKU:</row>
+			<row class="col-lg-7"><input id="sku" name="sku" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">NSFW:</row>
+			<row class="col-lg-7">
+				<select id="listing_nsfw" name="nsfw" >
+					<option value="true">true</option>
+					<option value="false">false</option>
+				</select>
+			</row></br></br>
+			<row class="col-lg-5">Keywords:</row>
+			<row class="col-lg-7"><input id="keywords" name="keywords" autocomplete="off" required></row></br></br>
 
-				<!-- SHIPPING -->
-				<h4>Shipping</h4>
-				<row class="col-lg-5">Shipping Origin:</row>
-				<row class="col-lg-7"><input id="shipping_origin" name="shipping_origin" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">Free Shipping:</row>
-				<row class="col-lg-7">
-					<select id="free_shipping" name="free_shipping" >
-						<option value="true">true</option>
-						<option value="false">false</option>
-					</select>
-				</row></br></br>
-				<row class="col-lg-5">Shipping - Domestic:</row>
-				<row class="col-lg-7">
-					<select id="shipping_domestic" name="shipping_domestic" >
-						<option value="true">true</option>
-						<option value="false">false</option>
-					</select>
-				</row></br></br>
-				<row class="col-lg-5">Estimated Delivery - Domestic:</row>
-				<row class="col-lg-7"><input id="est_delivery_domestic" type="number" name="est_delivery_domestic" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">Shipping - International:</row>
-				<row class="col-lg-7">
-					<select id="shipping_international" name="shipping_international" >
-						<option value="true">true</option>
-						<option value="false">false</option>
-					</select>
-				</row></br></br>
-				<row class="col-lg-5">Estimated Delivery - International:</row>
-				<row class="col-lg-7"><input id="est_delivery_international" name="est_delivery_international" type="number" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">Shipping Currency Code:</row>
-				<row class="col-lg-7">
-					<select id="shipping_currency_code" name="shipping_currency_code" >
-						<option value="BTC">BTC</option>
-					</select>
-				</row></br></br>
+			<!-- SHIPPING -->
+			<h4>Shipping</h4>
+			<row class="col-lg-5">Shipping Origin:</row>
+			<row class="col-lg-7"><input id="shipping_origin" name="shipping_origin" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Free Shipping:</row>
+			<row class="col-lg-7">
+				<select id="free_shipping" name="free_shipping" >
+					<option value="true">true</option>
+					<option value="false">false</option>
+				</select>
+			</row></br></br>
+			<row class="col-lg-5">Shipping - Domestic:</row>
+			<row class="col-lg-7">
+				<select id="shipping_domestic" name="shipping_domestic" >
+					<option value="true">true</option>
+					<option value="false">false</option>
+				</select>
+			</row></br></br>
+			<row class="col-lg-5">Estimated Delivery - Domestic:</row>
+			<row class="col-lg-7"><input id="est_delivery_domestic" type="number" name="est_delivery_domestic" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Shipping - International:</row>
+			<row class="col-lg-7">
+				<select id="shipping_international" name="shipping_international" >
+					<option value="true">true</option>
+					<option value="false">false</option>
+				</select>
+			</row></br></br>
+			<row class="col-lg-5">Estimated Delivery - International:</row>
+			<row class="col-lg-7"><input id="est_delivery_international" name="est_delivery_international" type="number" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Shipping Currency Code:</row>
+			<row class="col-lg-7">
+				<select id="shipping_currency_code" name="shipping_currency_code" >
+					<option value="BTC">BTC</option>
+				</select>
+			</row></br></br>
 
-				<!-- MODERATORS -->
-				<h4>Moderators</h4>
-				<row class="col-lg-5">Moderators (GUID):</row>
-				<row class="col-lg-7"><input id="add_moderators" name="moderators" autocomplete="off" required></row></br></br>
+			<!-- MODERATORS -->
+			<h4>Moderators</h4>
+			<row class="col-lg-5">Moderators (GUID):</row>
+			<row class="col-lg-7"><input id="add_moderators" name="moderators" autocomplete="off" required></row></br></br>
 
-				<!-- METADATA -->
-				<h4>Metadata</h4>
-				<row class="col-lg-5">Expiration:</row>
-				<row class="col-lg-7"><input id="exp_date" name="expiration_date" autocomplete="off" required></row></br></br>
-				<row class="col-lg-5">Metadata Category:</row>
-				<row class="col-lg-7"><input id="meta_category" name="metadata_category" autocomplete="off" required></row></br></br>
+			<!-- METADATA -->
+			<h4>Metadata</h4>
+			<row class="col-lg-5">Expiration:</row>
+			<row class="col-lg-7"><input id="exp_date" name="expiration_date" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Metadata Category:</row>
+			<row class="col-lg-7"><input id="meta_category" name="metadata_category" autocomplete="off" required></row></br></br>
 
-				<!-- SUBMIT BUTTON -->
-				<row class="col-lg-12"><button class="btn btn-warning col-lg-2" type="button" onclick="test()" value="Test">Test</button></row>
-				<br>
-				<br>
-				<row class="col-lg-12"><input class="btn btn-success col-lg-2" type="submit" value="Create"></row>
-			</form>
-		</div>
+			<!-- SUBMIT BUTTON -->
+			<row class="col-lg-12"><button class="btn btn-warning col-lg-2" type="button" onclick="test()" value="Test">Test</button></row>
+			<br>
+			<br>
+			<row class="col-lg-12"><input class="btn btn-success col-lg-2" type="submit" value="Create"></row>
+		</form>
+	</div>
 	</div>
 
 	<!-- VIEW IMAGES -->
@@ -354,18 +355,53 @@
 	    </div>
     </div>
 
+    <!-- NETWORK -->
+    <!-- CONNECTED PEERS -->
+	<div class="row marketing">
+	<br>
+	<h1 align="right"><b>Network</b></h1>
+	<hr></hr>
+	<h3>Get a list of connected peers</h3>
+	<div class="col-lg-12">
+		<form action="http://localhost:18469/api/v1/connected_peers" method="get" enctype="multipart/form-data" id="connected_peers" class="navbar-form navbar-left" target="_blank">
+			<row class="col-lg-12"><input class="btn btn-info" type="submit" value="Submit"/></row>
+		</form>
+	</div>
+	<br>
+	<br>
+	<br>
+	<!-- DISPLAY ROUTING TABLE -->
+	<h3>Display routing table</h3>
+	<div class="col-lg-12">
+		<form action="http://localhost:18469/api/v1/routing_table" method="get" enctype="multipart/form-data" id="routing_table" class="navbar-form navbar-left" target="_blank">
+			<row class="col-lg-12"><input class="btn btn-info" type="submit" value="Submit"/></row>
+		</form>
+	</div>
+	</div>
+
+    <!-- SETTINGS -->
     <!-- SHUTDOWN -->
 	<div class="row marketing">
 	<br>
 	<h1 align="right"><b>Settings</b></h1>
 	<hr></hr>
 	<h3>Safe Node Shutdown</h3>
-    	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/shutdown" method="get" enctype="multipart/form-data" id="shutdown" class="navbar-form navbar-left" target="_blank">
-				<row class="col-lg-12"><input class="btn btn-danger" type="submit" value="Shutdown"/></row>
-			</form>
-		</div>
+	<div class="col-lg-12">
+		<form action="http://localhost:18469/api/v1/shutdown" method="get" enctype="multipart/form-data" id="shutdown" class="navbar-form navbar-left" target="_blank">
+			<row class="col-lg-12"><input class="btn btn-danger" type="submit" value="Shutdown"/></row>
+		</form>
 	</div>
+	<br>
+	<br>
+	<br>
+	<!-- VIEW NODE SETTINGS -->
+	<h3>View Node Settings</h3>
+	<div class="col-lg-12">
+		<form action="http://localhost:18469/api/v1/settings" method="get" enctype="multipart/form-data" id="get_settings" class="navbar-form" target="_blank">
+			<row class="col-lg-12"><input class="btn btn-info" type="submit" value="Fetch" /></row>
+		</form>
+    </div>
+    </div>
 
 	</br>
 	</br>
