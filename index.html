@@ -21,23 +21,33 @@
   	<!-- GET STARTED -->
   	<div class="row marketing">
   		<h1>Getting Started</h1>
-  		<p><b>You must be running</b> the <a href="https://github.com/OpenBazaar/OpenBazaar-Server" target="_blank">OpenBazaar server</a> for this page to work!</p>
+  		<p><b>You must be running</b> the <a href="https://github.com/OpenBazaar/OpenBazaar-Server" target="_blank">OpenBazaar server</a> for this page to work! Ubuntu users you will need to install 'python-dev', 'libffi-dev', and 'gcc' before running 'requirements.txt' (check the installation instructions to know what I'm talking about.</p>
   		<p>During development, most of the network will be using the Testnet, so run your servers using the following command: <mark>$ python openbazaard.py start --testnet</mark></p>
+  		<p>You can get the code for this page <a href="https://github.com/drwasho/openbazaar-restapi-ui/tree/gh-pages" target="_blank">here</a>.</p>
+  		<h3>Latest features:</h3>
+  		<ul>
+  			<li>Can set location of remote server</li>
+  		</ul>
+  		<h3>Server</h3>
+  		<p>Add your own server location below. You <b>must</b> include <mark>http://</mark> and the port <mark>:18469</mark>. Your port <b>must be open</b> for this to work!</p>
+  		<p>To connect to your remote server, run the OpenBazaar server with the following command: <mark>$ python openbazaard.py start -t -r [IP address of your server]</mark>.</p>
+  		<p>I've tested this with Digital Ocean + Ubuntu 14.04, and it works great.</p>
+  		<h4>Server address:</h4>
+  		<p><input id="daemon" class="col-lg-7" value="http://localhost:18469" /></p>
   	</div>
 
   	<!-- DISCOVERY -->
-   	<!-- VIEW PROFILE -->
+   	<!-- VIEW OTHER PROFILES -->
   	<div class="row marketing">
-	<br>
   	<h1 align="right"><b>Discovery</b></h1>
   	<hr></hr>
 	<h3>View Profile</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/profile" method="get" enctype="multipart/form-data" id="view_profile" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-12"><label>If the GUID field is empty, your own profile will be displayed.</label></row></br></br>
+			<form value="/api/v1/profile" method="get" enctype="multipart/form-data" id="view_profile" class="navbar-form" target="_blank">
 				<row class="col-lg-5">GUID:</row>
-				<row class="col-lg-7"><input id="view_guid" name="guid"></row></br></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="View" /></row>
+				<row class="col-lg-7"><input id="view_guid" name="guid" required></row></br></br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="View" />
+				</row>
 			</form>
 	    </div>
     </div>
@@ -46,11 +56,10 @@
 	<div class="row marketing">
 	<h3>View Listings</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/get_listings" method="get" enctype="multipart/form-data" id="get_listings" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-12"><label>If the GUID field is empty, your own listings will be shown.</label></row></br></br>
+			<form value="/api/v1/get_listings" method="get" enctype="multipart/form-data" id="get_listings" class="navbar-form" target="_blank">
 				<row class="col-lg-5">GUID:</row>
-				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Fetch" /></row>
+				<row class="col-lg-7"><input id="target_guid" name="guid" required></row></br></br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="View"/></row>
 			</form>
 	    </div>
     </div>
@@ -59,13 +68,12 @@
   	<div class="row marketing">
 	<h3>View Contract</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/contracts" method="get" enctype="multipart/form-data" id="get_contract" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-12"><label>If the GUID field is empty, your own contract will be searched.</label></row></br></br>
+			<form value="/api/v1/contracts" method="get" enctype="multipart/form-data" id="get_contract" class="navbar-form" target="_blank">
 				<row class="col-lg-5">GUID:</row>
-				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
+				<row class="col-lg-7"><input id="target_guid" name="guid" required></row></br></br>
 				<row class="col-lg-5">Contract ID:</row>
 				<row class="col-lg-7"><input id="contract_id" name="id" required></row></br></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Fetch" /></row>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="View"/></row>
 			</form>
 	    </div>
     </div>
@@ -74,24 +82,59 @@
   	<div class="row marketing">
 		<h3>View Followers/Following</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/get_followers" method="get" enctype="multipart/form-data" id="get_followers" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-12"><label>If the GUID field is empty, your own followers or users you're following will be displayed.</label></row></br></br>
+			<form value="/api/v1/get_followers" method="get" enctype="multipart/form-data" id="get_followers" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Get Followers:</row>
-				<row class="col-lg-7"><input id="get_user_followers" name="guid" autocomplete="off" placeholder=" GUID"></row></br>
+				<row class="col-lg-7"><input id="get_user_followers" name="guid" autocomplete="off" placeholder="GUID"></row><br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
+			</form>
+			<br>
+			<br>
+			<form value="/api/v1/get_following" method="get" enctype="multipart/form-data" id="get_following" class="navbar-form" target="_blank">
+				<row class="col-lg-5">Get Following:</row>
+				<row class="col-lg-7"><input id="get_user_following" name="guid" autocomplete="off" placeholder=" GUID"></row><br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
 			</form>
 		</div>
-		</br>
-		</br>
-		</br>
-		</br>
-		</br>
-		</br>
+	</div>
+
+	<!-- MY NODE -->
+	<!-- VIEW MY PROFILE -->
+  	<div class="row marketing">
+  	<h1 align="right"><b>My Node</b></h1>
+  	<hr></hr>
+	<h3>My Profile</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/get_following" method="get" enctype="multipart/form-data" id="get_following" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-5">Get Following:</row>
-				<row class="col-lg-7"><input id="get_user_following" name="guid" autocomplete="off" placeholder=" GUID"></row></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
+			<row class="col-lg-3">
+				<form value="/api/v1/profile" method="get" enctype="multipart/form-data" id="view_my_profile" class="navbar-form" target="_blank">
+					<input class="btn btn-success" type="submit" value="My Profile" />
+				</form>
+			</row>
+			<row class="col-lg-3">
+				<!-- VIEW LISTINGS -->
+				<form value="/api/v1/get_listings" method="get" enctype="multipart/form-data" id="get_my_listings" class="navbar-form" target="_blank">
+					<input class="btn btn-success" type="submit" value="My Listings"/>
+				</form>
+			</row>
+			<row class="col-lg-3">
+	    		<!-- VIEW FOLLOWERS -->
+				<form value="/api/v1/get_followers" method="get" enctype="multipart/form-data" id="get_my_followers" class="navbar-form" target="_blank">
+					<input class="btn btn-success" type="submit" value="My Followers"/>
+				</form>
+			</row>
+			<row class="col-lg-3">
+				<!-- VIEW FOLLOWING -->
+				<form value="/api/v1/get_following" method="get" enctype="multipart/form-data" id="get_my_following" class="navbar-form" target="_blank">
+					<input class="btn btn-success" type="submit" value="My Following"/>
+				</form>
+			</row>
+		</div>
+		<div class="col-lg-12">
+			<br>
+			<!-- VIEW CONTRACT -->
+			<form value="/api/v1/contracts" method="get" enctype="multipart/form-data" id="get_contract" class="navbar-form" target="_blank">
+				<row class="col-lg-12">Contract ID:</row><br>
+				<row class="col-lg-12"><input id="contract_id" name="id" required></row><br><br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Search"/></row>
 			</form>
 		</div>
 	</div>
@@ -100,21 +143,23 @@
   	<!-- UPDATE PROFILE -->
   	<div class="row marketing">
 	<br>
-  	<h1 align="right"><b>My Profile</b></h1>
+  	<h1 align="right"><b>Profile Settings</b></h1>
   	<hr></hr>
 	<h3>Update Your Profile</h3>
 	<div class="col-lg-12">
-		<form action="http://localhost:18469/api/v1/profile" method="post" enctype="multipart/form-data" id="profile" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+		<form value="/api/v1/profile" method="post" enctype="multipart/form-data" id="profile" class="navbar-form" target="_blank">
 			<row class="col-lg-5">Name:</row>
-			<row class="col-lg-7"><input id="name" name="name" autocomplete="off"></row></br></br>
+			<row class="col-lg-7"><input id="name" name="name" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Handle:</row>
-			<row class="col-lg-7"><input id="handle" name="handle" autocomplete="off"></row></br></br>
+			<row class="col-lg-7"><input id="handle" name="handle" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">About:</row>
-			<row class="col-lg-7"><input id="about" name="about" autocomplete="off"></row></br></br>
+			<row class="col-lg-7"><input id="about" name="about" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Short Description:</row>
-			<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off"></row></br></br>
+			<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Avatar (image hash):</row>
-			<row class="col-lg-7"><input id="avatar_image_hash" name="avatar" autocomplete="off"></row></br></br>
+			<row class="col-lg-7"><input id="avatar_image_hash" name="avatar" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Header (image hash):</row>
+			<row class="col-lg-7"><input id="header_image_hash" name="header" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Location:</row>
 			<row class="col-lg-7">
 				<select id="location" name="location" >
@@ -124,9 +169,9 @@
 				</select>
 			</row></br></br>
 			<row class="col-lg-5">Website:</row>
-			<row class="col-lg-7"><input id="website" name="website" autocomplete="off"></row></br></br>
+			<row class="col-lg-7"><input id="website" name="website" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Email:</row>
-			<row class="col-lg-7"><input id="email" name="email" autocomplete="off"></row></br></br>
+			<row class="col-lg-7"><input id="email" name="email" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Vendor:</row>
 			<row class="col-lg-7">
 				<select id="vendor" name="vendor" >
@@ -151,7 +196,7 @@
   	<div class="row marketing">
 		<h3>Add Social Accounts</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/social_accounts" method="post" enctype="multipart/form-data" id="social_accounts" class="navbar-form" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+			<form value="/api/v1/social_accounts" method="post" enctype="multipart/form-data" id="social_accounts" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Select Social Account:</row>
 				<row class="col-lg-7">
 					<select id="account_type" name="account_type" >
@@ -165,22 +210,24 @@
 				<row class="col-lg-7"><input id="username" name="username" autocomplete="off" id="username" required></row></br></br>
 				<row class="col-lg-5">Proof URL:</row>
 				<row class="col-lg-7"><input id="proof" name="proof" autocomplete="off" id="proof" required></row></br></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit" /></row>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
 			</form>
 	    </div>
     </div>
 
     <!-- MODERATOR -->
 	<div class="row marketing">
-	<h3>Become a Moderator</h3>
-    	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/make_moderator" method="post" enctype="multipart/form-data" id="become_moderator" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-12"><input class="btn btn-info" type="submit" value="Approve" /></row>
+	<h3>Moderator Settings</h3>
+		<div class="col-lg-12">
+			<form value="/api/v1/make_moderator" method="post" enctype="multipart/form-data" id="become_moderator" class="navbar-form" target="_blank">
+				<row class="col-lg-5">Become a Moderator</row>
+				<row class="col-lg-7"><input class="btn btn-info" type="submit" value="Approve"/></row>
 			</form>
-			<br>
-			<br>
-			<form action="http://localhost:18469/api/v1/unmake_moderator" method="post" enctype="multipart/form-data" id="cancel_moderator" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
-				<row class="col-lg-12"><input class="btn btn-danger" type="submit" value="Cancel" /></row>
+		</div>
+		<div class="col-lg-12">
+			<form value="/api/v1/unmake_moderator" method="post" enctype="multipart/form-data" id="cancel_moderator" class="navbar-form" target="_blank">
+				<row class="col-lg-5">Become a Moderator</row>
+				<row class="col-lg-7"><input class="btn btn-danger" type="submit" value="Cancel"/></row>
 			</form>
 	    </div>
     </div>
@@ -189,21 +236,18 @@
   	<div class="row marketing">
 		<h3>Follow/Unfollow User</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/follow" method="post" enctype="multipart/form-data" id="follow" class="navbar-form" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+			<form value="/api/v1/follow" method="post" enctype="multipart/form-data" id="follow" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Follow:</row>
-				<row class="col-lg-7"><input id="follow_user" name="guid" autocomplete="off" placeholder=" GUID" id="followme" required></row></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit" id="yo"/></row>
+				<row class="col-lg-7"><input id="follow_user" name="guid" autocomplete="off" placeholder=" GUID" id="followme" required></row></br></br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Follow" id="yo"/></row>
 			</form>
 		</div>
-		</br>
-		</br>
-		</br>
-		</br>
-    	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/unfollow" method="post" enctype="multipart/form-data" id="unfollow" class="navbar-form" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+		<row class="col-lg-12"><br></row>
+		<div class="col-lg-12">
+			<form value="/api/v1/unfollow" method="post" enctype="multipart/form-data" id="unfollow" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Unfollow:</row>
-				<row class="col-lg-7"><input id="unfollow_user" name="guid" autocomplete="off" placeholder=" GUID" id="unfollowme" required></row></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
+				<row class="col-lg-7"><input id="unfollow_user" name="guid" autocomplete="off" placeholder=" GUID" id="unfollowme" required></row></br></br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Unfollow"/></row>
 			</form>
 		</div>
 	</div>
@@ -216,7 +260,7 @@
 	<hr></hr>
 	<h3><b>Stage 1:</b> Create Listing</h3>
 	<div class="col-lg-12">
-		<form action="http://localhost:18469/api/v1/contracts" method="post" enctype="multipart/form-data" id="create_contract" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+		<form value="/api/v1/contracts" method="post" enctype="multipart/form-data" id="create_contract" class="navbar-form" target="_blank">
 			
 			<!-- ITEM -->
 			<h4>Item</h4>
@@ -309,8 +353,7 @@
 
 			<!-- SUBMIT BUTTON -->
 			<row class="col-lg-12"><button class="btn btn-warning col-lg-2" type="button" onclick="test()" value="Test">Test</button></row>
-			<br>
-			<br>
+			<br></br>
 			<row class="col-lg-12"><input class="btn btn-success col-lg-2" type="submit" value="Create"></row>
 		</form>
 	</div>
@@ -323,13 +366,13 @@
 	<hr></hr>
 	<h3>View Images</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/get_image" method="get" enctype="multipart/form-data" id="get_image" class="navbar-form remove-empty-values" target="_blank" onSubmit="setTimeout(function () { window.location.reload(); }, 10)">
+			<form value="/api/v1/get_image" method="get" enctype="multipart/form-data" id="get_image" class="navbar-form" target="_blank">
 				<row class="col-lg-12"><label>If the GUID field is empty, your own images will be queried.</label></row></br></br>
 				<row class="col-lg-5">GUID:</row>
 				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
 				<row class="col-lg-5">Image Hash:</row>
 				<row class="col-lg-7"><input id="target_image_hash" name="hash" required></row></br></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Fetch" /></row>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="View" /></row>
 			</form>
 	    </div>
     </div>
@@ -338,7 +381,7 @@
   	<div class="row marketing">
 	<h3>Upload Images</h3>
     	<div class="col-lg-12">
-			<form action="http://localhost:18469/api/v1/upload_image" method="post" enctype="multipart/form-data" id="image_upload" class="navbar-form" target="_blank">
+			<form value="/api/v1/upload_image" method="post" enctype="multipart/form-data" id="image_upload" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Select Image Type:</row>
 				<row class="col-lg-7">
 					<select id="image_type" name="type" onchange="selectImageType()">
@@ -362,18 +405,16 @@
 	<hr></hr>
 	<h3>Get a list of connected peers</h3>
 	<div class="col-lg-12">
-		<form action="http://localhost:18469/api/v1/connected_peers" method="get" enctype="multipart/form-data" id="connected_peers" class="navbar-form navbar-left" target="_blank">
-			<row class="col-lg-12"><input class="btn btn-info" type="submit" value="Submit"/></row>
+		<form value="/api/v1/connected_peers" method="get" enctype="multipart/form-data" id="connected_peers" class="navbar-form navbar-left" target="_blank">
+			<row class="col-lg-12"><input class="btn btn-info" type="submit" value="View"/></row>
 		</form>
 	</div>
-	<br>
-	<br>
-	<br>
+	<row class="col-lg-12"><br></row>
 	<!-- DISPLAY ROUTING TABLE -->
 	<h3>Display routing table</h3>
 	<div class="col-lg-12">
-		<form action="http://localhost:18469/api/v1/routing_table" method="get" enctype="multipart/form-data" id="routing_table" class="navbar-form navbar-left" target="_blank">
-			<row class="col-lg-12"><input class="btn btn-info" type="submit" value="Submit"/></row>
+		<form value="/api/v1/routing_table" method="get" enctype="multipart/form-data" id="routing_table" class="navbar-form navbar-left" target="_blank">
+			<row class="col-lg-12"><input class="btn btn-info" type="submit" value="View"/></row>
 		</form>
 	</div>
 	</div>
@@ -386,18 +427,16 @@
 	<hr></hr>
 	<h3>Safe Node Shutdown</h3>
 	<div class="col-lg-12">
-		<form action="http://localhost:18469/api/v1/shutdown" method="get" enctype="multipart/form-data" id="shutdown" class="navbar-form navbar-left" target="_blank">
+		<form value="/api/v1/shutdown" method="get" enctype="multipart/form-data" id="shutdown" class="navbar-form navbar-left" target="_blank">
 			<row class="col-lg-12"><input class="btn btn-danger" type="submit" value="Shutdown"/></row>
 		</form>
 	</div>
-	<br>
-	<br>
-	<br>
+	<row class="col-lg-12"><br></row>
 	<!-- VIEW NODE SETTINGS -->
 	<h3>View Node Settings</h3>
 	<div class="col-lg-12">
-		<form action="http://localhost:18469/api/v1/settings" method="get" enctype="multipart/form-data" id="get_settings" class="navbar-form" target="_blank">
-			<row class="col-lg-12"><input class="btn btn-info" type="submit" value="Fetch" /></row>
+		<form value="/api/v1/settings" method="get" enctype="multipart/form-data" id="get_settings" class="navbar-form" target="_blank">
+			<row class="col-lg-12"><input class="btn btn-info" type="submit" value="View" /></row>
 		</form>
     </div>
     </div>
@@ -421,18 +460,6 @@
 		var das = document.getElementById("image_type").value;
 		document.getElementById("image_file").setAttribute("name", das);
 	};
-	$(document).ready(function() {
-			$('.remove-empty-values').submit(function() {
-			$(this).find(':input').filter(function() { return !this.value; }).attr('disabled', 'disabled');
-			return true; // make sure that the form is still submitted
-			});
-	});
-	$(document).ready(function() {
-			$('.remove-empty-values').submit(function() {
-			$(this).find(':input').filter(function() { return !this.value; }).attr('disabled', 'disabled');
-			return true; // make sure that the form is still submitted
-			});
-	});
 	function test() {
 		document.getElementById("title").value = "Crap";
 		document.getElementById("listing_description").value = "Quality dog crap";
@@ -451,6 +478,21 @@
 		document.getElementById("est_delivery_international").value = 30;
 		document.getElementById("add_moderators").value = "346e36f0ff583251cf3d0700e9ef96d17ee4af74";
 	};
+	$("form").on('submit', function() {
+		var daemon = $('#daemon').val();
+		console.log(daemon);
+		var formAction = $(this).attr('value');
+		console.log(formAction);
+		var execute = daemon + formAction;
+		console.log(execute);
+		$(this).attr('action', execute);
+	});
+	$(document).ready(function() {
+		$('.remove-empty-values').submit(function() {
+			$(this).find(':input').filter(function() { return !this.value; }).attr('disabled', 'disabled');
+			return true; // make sure that the form is still submitted
+		});
+	});
 </script>
 
 
