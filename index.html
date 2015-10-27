@@ -139,6 +139,8 @@
 		</div>
 	</div>
 
+    <pre id="terminal"></pre>
+
   	<!-- PROFILE CONTROLS -->
   	<!-- UPDATE PROFILE -->
   	<div class="row marketing">
@@ -185,7 +187,9 @@
 					<option value="true">true</option>
 					<option value="false">false</option>
 				</select>
-			</row></br></br>	
+			</row></br></br>
+			<row class="col-lg-5">Add a Moderator:</row>
+			<row class="col-lg-7"><input id="choose_mod" name="moderator_list" autocomplete="off"></row></br></br>
 			<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
 		</form>
     </div>
@@ -253,7 +257,7 @@
 	</div>
 
     <!-- MARKET -->
-    <!-- CREATE LISTING -->
+    <!-- STAGE 1: CREATE LISTING -->
 	<div class="row marketing">
 	</br>
 	<h1 align="right"><b>Trade Flow</b></h1>
@@ -355,6 +359,97 @@
 			<row class="col-lg-12"><button class="btn btn-warning col-lg-2" type="button" onclick="test()" value="Test">Test</button></row>
 			<br></br>
 			<row class="col-lg-12"><input class="btn btn-success col-lg-2" type="submit" value="Create"></row>
+		</form>
+	</div>
+	</div>
+
+	<!-- STAGE 2: PLACE AN ORDER -->
+	<div class="row marketing">
+	</br>
+	<h3><b>Stage 2:</b> Place an Order</h3>
+	<div class="col-lg-12">
+		<form value="/api/v1/purchase_contract" method="post" enctype="multipart/form-data" id="place_order" class="navbar-form" target="_blank">
+			<h4>Order Details</h4>
+			<row class="col-lg-5">Contract ID (hash):</row>
+			<row class="col-lg-7"><input id="order_id" name="id" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Quantity:</row>
+			<row class="col-lg-7"><input id="order_quantity" name="quantity" type="number" min="1" autocomplete="off" required></row></br></br>
+			<h4>Buyer Details</h4>
+			<row class="col-lg-5">Buyer Name:</row>
+			<row class="col-lg-7"><input id="order_buyer_name" name="ship_to" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Address:</row>
+			<row class="col-lg-7"><input id="order_buyer_addr" name="address" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">City:</row>
+			<row class="col-lg-7"><input id="order_buyer_city" name="city" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">State:</row>
+			<row class="col-lg-7"><input id="order_buyer_state" name="state" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Country:</row>
+			<row class="col-lg-7"><select id="order_buyer_country" name="country" required>
+			<option value="UNITED_STATES">United States</option>
+			<option value="UNITED_KINGDOM">United Kingdom</option>
+			<option value="AUSTRALIA">Australia</option>
+			<option value="MEXICO">Mexico</option>
+			</select></row></br></br>
+			<h4>Moderator</h4>
+			<row class="col-lg-5">Moderator GUID:</row>
+			<row class="col-lg-7"><input id="order_buyer_guid" name="moderator" autocomplete="off" required></row></br></br>
+			<row class="col-lg-12"><input class="btn btn-success col-lg-2" type="submit" value="Place Order"></row>
+		</form>
+	</div>
+	</div>
+
+	<!-- STAGE 3: CONFIRM ORDER -->
+	<div class="row marketing">
+	</br>
+	<h3><b>Stage 3:</b> Confirm Order</h3>
+	<div class="col-lg-12">
+		<form value="/api/v1/confirm_order" method="post" enctype="multipart/form-data" id="confirm_order" class="navbar-form" target="_blank">
+			<h4>Order Details</h4>
+			<row class="col-lg-5">Select order:</row>
+			<row class="col-lg-7"><input id="order_file" name="id"></row></br></br>
+			<row class="col-lg-5">Payout Address:</row>
+			<row class="col-lg-7"><input id="payout_address" name="payout_address" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Comments:</row>
+			<row class="col-lg-7"><input id="confirm_comments" name="comments" autocomplete="off"></row></br></br>
+			<h4>Physical Item</h4>
+			<row class="col-lg-5">Shipper:</row>
+			<row class="col-lg-7"><input id="confirm_shipper" name="shipper" autocomplete="off"></row></br></br>
+			<row class="col-lg-5">Tracking Number:</row>
+			<row class="col-lg-7"><input id="tracking_number" name="tracking_number" autocomplete="off"></row></br></br>
+			<row class="col-lg-5">Estimated delivery:</row>
+			<row class="col-lg-7"><input id="confirm_est_delivery" name="est_delivery" autocomplete="off"></row></br></br>
+			<h4>Digital Content</h4>
+			<row class="col-lg-5">URL:</row>
+			<row class="col-lg-7"><input id="confirm_url" name="url" autocomplete="off"></row></br></br>
+			<row class="col-lg-5">Password:</row>
+			<row class="col-lg-7"><input id="confirm_password" name="password" autocomplete="off"></row></br></br>
+			<row class="col-lg-12"><input class="btn btn-success col-lg-3" type="submit" value="Confirm Order"></row>
+		</form>
+	</div>
+	</div>
+
+	<!-- STAGE 4: COMPLETE ORDER -->
+	<div class="row marketing">
+	</br>
+	<h3><b>Stage 4:</b> Complete Order</h3>
+	<div class="col-lg-12">
+		<form value="/api/v1/complete_order" method="post" enctype="multipart/form-data" id="complete_order" class="navbar-form" target="_blank">
+			<h4>Ratings and Review</h4>
+			<row class="col-lg-5">Order ID:</row>
+			<row class="col-lg-7"><input id="complete_order_file" name="id"></row></br></br>
+			<row class="col-lg-5">Feedback:</row>
+			<row class="col-lg-7"><input id="feedback" name="feedback" type="number" min="1" max="5" autocomplete="off" required> stars</row></br></br>
+			<row class="col-lg-5">Quality:</row>
+			<row class="col-lg-7"><input id="quality" name="quality" type="number" min="1" max="5" autocomplete="off" required> stars</row></br></br>
+			<row class="col-lg-5">Product Description:</row>
+			<row class="col-lg-7"><input id="rating_description" name="description" type="number" min="1" max="5" autocomplete="off" required> stars</row></br></br>
+			<row class="col-lg-5">Delivery Time:</row>
+			<row class="col-lg-7"><input id="rate_delivery_time" name="delivery_time" type="number" min="1" max="5" autocomplete="off" required> stars</row></br></br>
+			<row class="col-lg-5">Customer service:</row>
+			<row class="col-lg-7"><input id="customer_service" name="customer_service" type="number" min="1" max="5" autocomplete="off" required> stars</row></br></br>
+			<row class="col-lg-5">Review:</row>
+			<row class="col-lg-7"><input id="review" name="review"autocomplete="off" required></row></br></br>
+			<row class="col-lg-12"><input class="btn btn-success col-lg-3" type="submit" value="Complete Order"></row>
 		</form>
 	</div>
 	</div>
@@ -486,6 +581,10 @@
 		var execute = daemon + formAction;
 		console.log(execute);
 		$(this).attr('action', execute);
+		$.getJSON(execute, function (json) {
+			var ass = json.profile.website;
+			console.log(ass);
+		});
 	});
 	$(document).ready(function() {
 		$('.remove-empty-values').submit(function() {
@@ -495,7 +594,12 @@
 	});
 </script>
 
-
 </body>
   
 </html>
+
+
+
+$.getJSON('yourURL.php', function(data) {
+  alert(data.name);
+});
