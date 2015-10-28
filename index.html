@@ -58,7 +58,7 @@
     	<div class="col-lg-12">
 			<form value="/api/v1/get_listings" method="get" enctype="multipart/form-data" id="get_listings" class="navbar-form" target="_blank">
 				<row class="col-lg-5">GUID:</row>
-				<row class="col-lg-7"><input id="target_guid" name="guid" required></row></br></br>
+				<row class="col-lg-7"><input id="listing_target_guid" name="guid" required></row></br></br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="View"/></row>
 			</form>
 	    </div>
@@ -70,7 +70,7 @@
     	<div class="col-lg-12">
 			<form value="/api/v1/contracts" method="get" enctype="multipart/form-data" id="get_contract" class="navbar-form" target="_blank">
 				<row class="col-lg-5">GUID:</row>
-				<row class="col-lg-7"><input id="target_guid" name="guid" required></row></br></br>
+				<row class="col-lg-7"><input id="contract_target_guid" name="guid" required></row></br></br>
 				<row class="col-lg-5">Contract ID:</row>
 				<row class="col-lg-7"><input id="contract_id" name="id" required></row></br></br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="View"/></row>
@@ -267,17 +267,17 @@
 			<!-- ITEM -->
 			<h4>Item</h4>
 			<row class="col-lg-5">Title:</row>
-			<row class="col-lg-7"><input id="title" name="title" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_title" name="title" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Description:</row>
 			<row class="col-lg-7"><input id="listing_description" name="description" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Price:</row>
-			<row class="col-lg-7"><input id="price" type="number" name="price" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_price" type="number" name="price" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Currency Code:</row>
-			<row class="col-lg-7"><input id="currency_code" name="currency_code" autocomplete="off" value="BTC" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_currency_code" name="currency_code" autocomplete="off" value="BTC" required></row></br></br>
 			<row class="col-lg-5">Category:</row>
-			<row class="col-lg-7"><input id="category" name="category" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_category" name="category" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Image Hash:</row>
-			<row class="col-lg-7"><input id="images" name="images" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_images" name="images" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Condition:</row>
 			<row class="col-lg-7">
 				<select id="condition" name="condition" >
@@ -288,13 +288,13 @@
 			<!-- ORDER -->
 			<h4>Order</h4>
 			<row class="col-lg-5">Process Time:</row>
-			<row class="col-lg-7"><input id="process_time" type="number" name="process_time" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_process_time" type="number" name="process_time" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Terms and Conditions:</row>
-			<row class="col-lg-7"><input id="terms_conditions" name="terms_conditions" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_terms_conditions" name="terms_conditions" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Returns:</row>
-			<row class="col-lg-7"><input id="returns" name="returns" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_returns" name="returns" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">SKU:</row>
-			<row class="col-lg-7"><input id="sku" name="sku" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_sku" name="sku" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">NSFW:</row>
 			<row class="col-lg-7">
 				<select id="listing_nsfw" name="nsfw" >
@@ -462,7 +462,7 @@
 			<form value="/api/v1/get_image" method="get" enctype="multipart/form-data" id="get_image" class="navbar-form" target="_blank">
 				<row class="col-lg-12"><label>If the GUID field is empty, your own images will be queried.</label></row></br></br>
 				<row class="col-lg-5">GUID:</row>
-				<row class="col-lg-7"><input id="target_guid" name="guid"></row></br></br>
+				<row class="col-lg-7"><input id="image_target_guid" name="guid"></row></br></br>
 				<row class="col-lg-5">Image Hash:</row>
 				<row class="col-lg-7"><input id="target_image_hash" name="hash" required></row></br></br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="View" /></row>
@@ -474,17 +474,17 @@
   	<div class="row marketing">
 	<h3>Upload Images</h3>
     	<div class="col-lg-12">
-			<form value="/api/v1/upload_image" method="post" enctype="multipart/form-data" id="image_upload" class="navbar-form" target="_blank">
+			<form value="/api/v1/upload_image" method="post" enctype="multipart/form-data" id="image_upload" class="navbar-form" target="_blank" onsubmit="myFunction()">
 				<row class="col-lg-5">Select Image Type:</row>
 				<row class="col-lg-7">
-					<select id="image_type" name="type" onchange="selectImageType()">
+					<select id="image_type" name="type">
 						<option value="image">Product Image</option>
 						<option value="avatar">Avatar</option>
 						<option value="header">Header</option>
 					</select>
 				</row></br></br>
 				<row class="col-lg-5">Image:</row>
-				<row class="col-lg-7"><input id="image_file" type="file" name="avatar" id="image"></row></br></br>
+				<row class="col-lg-7"><input id="image_file" type="file"></row></br></br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Upload" /></row>
 			</form>
 	    </div>
@@ -551,10 +551,6 @@
 
 <!-- REST API Form Script -->
 <script>
-	function selectImageType(id) {
-		var das = document.getElementById("image_type").value;
-		document.getElementById("image_file").setAttribute("name", das);
-	};
 	function test() {
 		document.getElementById("title").value = "Crap";
 		document.getElementById("listing_description").value = "Quality dog crap";
@@ -571,7 +567,7 @@
 		document.getElementById("meta_category").value = "Physical Good";
 		document.getElementById("est_delivery_domestic").value = 3;
 		document.getElementById("est_delivery_international").value = 30;
-		document.getElementById("add_moderators").value = "346e36f0ff583251cf3d0700e9ef96d17ee4af74";
+		document.getElementById("add_moderators").value = "b446f60831850c2bbe2b9b1af31b50adf4295979";
 	};
 	$("form").on('submit', function() {
 		var daemon = $('#daemon').val();
@@ -581,10 +577,6 @@
 		var execute = daemon + formAction;
 		console.log(execute);
 		$(this).attr('action', execute);
-		$.getJSON(execute, function (json) {
-			var ass = json.profile.website;
-			console.log(ass);
-		});
 	});
 	$(document).ready(function() {
 		$('.remove-empty-values').submit(function() {
@@ -592,6 +584,11 @@
 			return true; // make sure that the form is still submitted
 		});
 	});
+	function myFunction() {
+    	var x = document.getElementById("image_type").value;
+    	document.getElementById("image_file").name = x;
+    	console.log(x);
+	};
 </script>
 
 </body>
