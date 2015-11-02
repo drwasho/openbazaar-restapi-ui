@@ -14,7 +14,7 @@
 <body>
 <div class="container">
     
-  	<div class="row marketing"><img class="col-lg-12 col-xs-12" src="http://i.imgur.com/Vrbvrfa.png"></div>
+  	<div class="row marketing"><img class="col-lg-12 col-xs-12" src="https://i.imgur.com/Vrbvrfa.png"></div>
     <div class="header clearfix">
     	<h2 class="text-muted">OpenBazaar API Tools</h2>
   	</div>
@@ -35,6 +35,11 @@
   		<p>Please note that running the server this way is <b>not secure</b>, and for testing purposes only. I've tested this with Digital Ocean + Ubuntu 14.04, and it works great.</p>
   		<h4>Server IP Address:</h4>
   		<p><input id="daemon" class="col-lg-7" value="localhost" /></p>
+  		<h3>Known Bugs</h3>
+  		<ul>
+  			<li>Websockets won't work with <mark>https</mark>, only <mark>http</mark>. You're better off cloning the repo into your machine and running the index.html file directly</li>
+  			<li>To update anything in your profile, you have to enter in all your data again. Working on this.</li>
+		</ul>
   	</div>
 
   	<!-- WEBSOCKET CONTROL PANEL -->
@@ -600,7 +605,7 @@
 
 		// Create a new WebSocket
 		var daemonaddr = document.getElementById('daemon').value;
-		var socket = new WebSocket('wss://' + daemonaddr + ':18466');
+		var socket = new WebSocket('ws://' + daemonaddr + ':18466');
 
 		// Handle any errors that occur.
 		socket.onerror = function(error) {
