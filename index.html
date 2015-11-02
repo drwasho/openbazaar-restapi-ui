@@ -14,13 +14,13 @@
 <body>
 <div class="container">
     
+  	<div class="row marketing"><img class="col-lg-12" src="http://i.imgur.com/Vrbvrfa.png"></div>
     <div class="header clearfix">
-    	<h2 class="text-muted">OpenBazaar REST API Browser UI</h2>
+    	<h2 class="text-muted">OpenBazaar API Tools</h2>
   	</div>
-
   	<!-- GET STARTED -->
   	<div class="row marketing">
-  		<h1>Getting Started</h1>
+  		<h2>Getting Started</h2>
   		<p><b>You must be running</b> the <a href="https://github.com/OpenBazaar/OpenBazaar-Server" target="_blank">OpenBazaar server</a> for this page to work! Ubuntu users you will need to install 'python-dev', 'libffi-dev', and 'gcc' before running 'requirements.txt' (check the installation instructions to know what I'm talking about.</p>
   		<p>During development, most of the network will be using the Testnet, so run your servers using the following command: <mark>$ python openbazaard.py start --testnet</mark></p>
   		<p>You can get the code for this page <a href="https://github.com/drwasho/openbazaar-restapi-ui/tree/gh-pages" target="_blank">here</a>.</p>
@@ -30,11 +30,49 @@
   		</ul>
   		<h3>Server</h3>
   		<p>Add your own server location below. You <b>must</b> include <mark>http://</mark> and the port <mark>:18469</mark>. Your port <b>must be open</b> for this to work!</p>
-  		<p>To connect to your remote server, run the OpenBazaar server with the following command: <mark>$ python openbazaard.py start -t -r [IP address of your server]</mark>.</p>
+  		<p>To connect to your remote server, run the OpenBazaar server with the following command:<p>
+  		<p><mark>$ python openbazaard.py start -t -r [IP address of your server]</mark>.</p>
   		<p>I've tested this with Digital Ocean + Ubuntu 14.04, and it works great.</p>
   		<h4>Server address:</h4>
   		<p><input id="daemon" class="col-lg-7" value="http://localhost:18469" /></p>
   	</div>
+
+  	<!-- WEBSOCKET CONTROL PANEL -->
+  	<!-- DISCOVERY -->
+  	<div class="row marketing">
+  	<h1 align="right"><b>Websocket Panel</b></h1>
+  	<hr></hr>
+	<h3>Controls</h3>
+    	<div class="col-lg-12">
+			<form action="#" method="post" id="get_vendors">
+				<row class="col-lg-12"><button class="btn btn-success" type="submit">Get Vendors</button>
+				</row>
+			</form>
+	    </div>
+	    <div class="col-lg-12">
+	    	<br>
+			<form action="#" method="post" id="get_moderators">
+				<row class="col-lg-12"><button class="btn btn-success" type="submit">Get Moderators</button>
+				</row>
+			</form>
+	    </div>
+	    <div class="col-lg-12">
+	    	<br>
+			<form action="#" method="post" id="get_homepage_listings">
+				<row class="col-lg-12"><button class="btn btn-success" type="submit">Get Homepage Listings</button>
+				</row>
+			</form>
+	    </div>
+	    <div class="col-lg-12">
+	    	<br>
+	    	<textarea class="col-lg-12" id="terminal" rows="15" placeholder="WS Output"></textarea>
+	    </div>
+	    <div class="col-lg-12">
+	    	<br>
+	    	<button class="btn btn-success" type="button" id="open" onclick="openws()">Open WS Connection</button>
+	    	<button class="btn btn-warning" type="button" id="close">Close WS Connection</button>
+    	</div>
+    </div>
 
   	<!-- DISCOVERY -->
    	<!-- VIEW OTHER PROFILES -->
@@ -303,40 +341,40 @@
 				</select>
 			</row></br></br>
 			<row class="col-lg-5">Keywords:</row>
-			<row class="col-lg-7"><input id="keywords" name="keywords" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_keywords" name="keywords" autocomplete="off" required></row></br></br>
 
 			<!-- SHIPPING -->
 			<h4>Shipping</h4>
 			<row class="col-lg-5">Shipping Origin:</row>
-			<row class="col-lg-7"><input id="shipping_origin" name="shipping_origin" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_shipping_origin" name="shipping_origin" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Free Shipping:</row>
 			<row class="col-lg-7">
-				<select id="free_shipping" name="free_shipping" >
+				<select id="listing_free_shipping" name="free_shipping" >
 					<option value="true">true</option>
 					<option value="false">false</option>
 				</select>
 			</row></br></br>
 			<row class="col-lg-5">Shipping - Domestic:</row>
 			<row class="col-lg-7">
-				<select id="shipping_domestic" name="shipping_domestic" >
+				<select id="listing_shipping_domestic" name="shipping_domestic" >
 					<option value="true">true</option>
 					<option value="false">false</option>
 				</select>
 			</row></br></br>
 			<row class="col-lg-5">Estimated Delivery - Domestic:</row>
-			<row class="col-lg-7"><input id="est_delivery_domestic" type="number" name="est_delivery_domestic" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_est_delivery_domestic" type="number" name="est_delivery_domestic" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Shipping - International:</row>
 			<row class="col-lg-7">
-				<select id="shipping_international" name="shipping_international" >
+				<select id="listing_shipping_international" name="shipping_international" >
 					<option value="true">true</option>
 					<option value="false">false</option>
 				</select>
 			</row></br></br>
 			<row class="col-lg-5">Estimated Delivery - International:</row>
-			<row class="col-lg-7"><input id="est_delivery_international" name="est_delivery_international" type="number" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_est_delivery_international" name="est_delivery_international" type="number" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Shipping Currency Code:</row>
 			<row class="col-lg-7">
-				<select id="shipping_currency_code" name="shipping_currency_code" >
+				<select id="listing_shipping_currency_code" name="shipping_currency_code" >
 					<option value="BTC">BTC</option>
 				</select>
 			</row></br></br>
@@ -344,14 +382,14 @@
 			<!-- MODERATORS -->
 			<h4>Moderators</h4>
 			<row class="col-lg-5">Moderators (GUID):</row>
-			<row class="col-lg-7"><input id="add_moderators" name="moderators" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_add_moderators" name="moderators" autocomplete="off" required></row></br></br>
 
 			<!-- METADATA -->
 			<h4>Metadata</h4>
 			<row class="col-lg-5">Expiration:</row>
-			<row class="col-lg-7"><input id="exp_date" name="expiration_date" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_exp_date" name="expiration_date" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Metadata Category:</row>
-			<row class="col-lg-7"><input id="meta_category" name="metadata_category" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_meta_category" name="metadata_category" autocomplete="off" required></row></br></br>
 
 			<!-- SUBMIT BUTTON -->
 			<row class="col-lg-12"><button class="btn btn-warning col-lg-2" type="button" onclick="test()" value="Test">Test</button></row>
@@ -551,25 +589,133 @@
 
 <!-- REST API Form Script -->
 <script>
-	function test() {
-		document.getElementById("title").value = "Crap";
-		document.getElementById("listing_description").value = "Quality dog crap";
-		document.getElementById("price").value = 1;
-		document.getElementById("category").value = "Dog Feces";
-		document.getElementById("images").value = "adbaa11b6ffc14ea9a720dd875babb59354e9e36";
-		document.getElementById("process_time").value = 1;
-		document.getElementById("terms_conditions").value = "Dogs aren't liable for fecal quality. No refunds";
-		document.getElementById("returns").value = "No returns";
-		document.getElementById("sku").value = "001-dog-feces";
-		document.getElementById("keywords").value = "dog crap";
-		document.getElementById("shipping_origin").value = "AUSTRALIA";
-		document.getElementById("exp_date").value = "2016";
-		document.getElementById("meta_category").value = "Physical Good";
-		document.getElementById("est_delivery_domestic").value = 3;
-		document.getElementById("est_delivery_international").value = 30;
-		document.getElementById("add_moderators").value = "b446f60831850c2bbe2b9b1af31b50adf4295979";
+	function openws() {
+
+		// Get references to elements on the page.
+		var getvendorsform = document.getElementById('get_vendors');
+		var getmoderatorsform = document.getElementById('get_moderators');
+		var getlistingsform = document.getElementById('get_homepage_listings');
+		var closeBtn = document.getElementById('close');
+
+		// Create a new WebSocket
+		var socket = new WebSocket('ws://localhost:18466');
+
+		// Handle any errors that occur.
+		socket.onerror = function(error) {
+			console.log('WebSocket Error: ' + error);
+		};
+
+		// Show a connected message when the WebSocket is opened.
+		socket.onopen = function(event) {
+			console.log('Socket is open!');
+		};
+
+		// Handle messages sent by the server.
+		socket.onmessage = function(e) {
+			var dasmessage = e.data;
+			console.log(dasmessage);
+			document.getElementById('terminal').value += dasmessage;
+		};
+
+		// Show a disconnected message when the WebSocket is closed.
+		socket.onclose = function(event) {
+			console.log('Disconnected from Socket!');
+		};
+
+
+		// Send a message when the get_vendors form is sumitted
+		getvendorsform.onsubmit = function(e) {
+			document.getElementById('terminal').value = '';
+
+			e.preventDefault();
+
+			// Message Details
+			var message = {"request": {
+	      		"api": "v1",
+	      		"id" : Math.floor((Math.random() * 10000) + 1),
+	      		"guid": "39805f8892e0187d26ec8970e245f12a78bd8f6f",
+	      		"command": "get_vendors"
+	    		}};
+
+		    // Send the message through the WebSocket.
+	    	socket.send(JSON.stringify(message));
+
+			return false;
+		};
+
+		// Send a message when the get_moderators form is sumitted
+		getmoderatorsform.onsubmit = function(e) {
+			document.getElementById('terminal').value = '';
+			
+			e.preventDefault();
+
+			// Message Details
+			var message = {"request": {
+	      		"api": "v1",
+	      		"id" : Math.floor((Math.random() * 10000) + 1),
+	      		"guid": "39805f8892e0187d26ec8970e245f12a78bd8f6f",
+	      		"command": "get_moderators"
+	    		}};
+
+		    // Send the message through the WebSocket.
+	    	socket.send(JSON.stringify(message));
+
+			return false;
+		};
+
+		// Send a message when the get_homepage_listings form is sumitted
+		getlistingsform.onsubmit = function(e) {
+			document.getElementById('terminal').value = '';
+			
+			e.preventDefault();
+
+			// Message Details
+			var message = {"request": {
+	      		"api": "v1",
+	      		"id" : Math.floor((Math.random() * 100000) + 1),
+	      		"guid": "39805f8892e0187d26ec8970e245f12a78bd8f6f",
+	      		"command": "get_homepage_listings"
+	    		}};
+
+		    // Send the message through the WebSocket.
+	    	socket.send(JSON.stringify(message));
+
+			return false;
+		};
+
+		// Close the WebSocket connection when the close button is clocked.
+		closeBtn.onclick = function(e) {
+			e.preventDefault();
+
+			// Close the WebSocket.
+			socket.close();
+
+			return false;
+		};
+
 	};
+
+	function test() {
+		document.getElementById("listing_title").value = "Crap";
+		document.getElementById("listing_description").value = "Quality dog crap";
+		document.getElementById("listing_price").value = 1;
+		document.getElementById("listing_category").value = "Dog Feces";
+		document.getElementById("listing_images").value = "adbaa11b6ffc14ea9a720dd875babb59354e9e36";
+		document.getElementById("listing_process_time").value = 1;
+		document.getElementById("listing_terms_conditions").value = "Dogs aren't liable for fecal quality. No refunds";
+		document.getElementById("listing_returns").value = "No returns";
+		document.getElementById("listing_sku").value = "001-dog-feces";
+		document.getElementById("listing_keywords").value = "dog crap";
+		document.getElementById("listing_shipping_origin").value = "AUSTRALIA";
+		document.getElementById("listing_exp_date").value = "2016";
+		document.getElementById("listing_meta_category").value = "Physical Good";
+		document.getElementById("listing_est_delivery_domestic").value = 3;
+		document.getElementById("listing_est_delivery_international").value = 30;
+		document.getElementById("listing_add_moderators").value = "b446f60831850c2bbe2b9b1af31b50adf4295979";
+	};
+
 	$("form").on('submit', function() {
+		execute = '';
 		var daemon = $('#daemon').val();
 		console.log(daemon);
 		var formAction = $(this).attr('value');
@@ -578,17 +724,20 @@
 		console.log(execute);
 		$(this).attr('action', execute);
 	});
+
 	$(document).ready(function() {
 		$('.remove-empty-values').submit(function() {
 			$(this).find(':input').filter(function() { return !this.value; }).attr('disabled', 'disabled');
 			return true; // make sure that the form is still submitted
 		});
 	});
+
 	function myFunction() {
     	var x = document.getElementById("image_type").value;
     	document.getElementById("image_file").name = x;
     	console.log(x);
 	};
+	
 </script>
 
 </body>
