@@ -26,15 +26,15 @@
   		<p>You can get the code for this page <a href="https://github.com/drwasho/openbazaar-restapi-ui/tree/gh-pages" target="_blank">here</a>.</p>
   		<h3>Latest features:</h3>
   		<ul>
-  			<li>Can set location of remote server</li>
+  			<li>Websockets now added! Supports: <mark>'get_vendors'</mark>, <mark>'get_moderators'</mark>, and <mark>'get_homepage_listings'</mark>!</li>
   		</ul>
   		<h3>Server</h3>
-  		<p>Add your own server location below. You <b>must</b> include <mark>http://</mark> and the port <mark>:18469</mark>. Your port <b>must be open</b> for this to work!</p>
+  		<p>Add your own server IP address below; by default it is set to <mark>localhost</mark> (i.e. you're running the OpenBazaar daemon on your computer). The default port for the REST API is <mark>18469</mark>, while the default websocket port is <mark>18466</mark>. If your server is hosted remotely, your port <b>must be open</b> for this to work!</p>
   		<p>To connect to your remote server, run the OpenBazaar server with the following command:<p>
   		<p><mark>$ python openbazaard.py start -t -r [IP address of your server]</mark>.</p>
-  		<p>I've tested this with Digital Ocean + Ubuntu 14.04, and it works great.</p>
+  		<p>Please note that running the server this way is <b>not secure</b>, and for testing purposes only. I've tested this with Digital Ocean + Ubuntu 14.04, and it works great.</p>
   		<h4>Server address:</h4>
-  		<p><input id="daemon" class="col-lg-7" value="http://localhost:18469" /></p>
+  		<p><input id="daemon" class="col-lg-7" value="localhost" /></p>
   	</div>
 
   	<!-- WEBSOCKET CONTROL PANEL -->
@@ -43,7 +43,9 @@
   	<h1 align="right"><b>Websocket Panel</b></h1>
   	<hr></hr>
 	<h3>Controls</h3>
+		<div class="col-lg-12"><button class="btn btn-info" type="button" id="open" onclick="openws()">Open WS Connection</button></div>
     	<div class="col-lg-12">
+	    	<br>
 			<form action="#" method="post" id="get_vendors">
 				<row class="col-lg-12"><button class="btn btn-success" type="submit">Get Vendors</button>
 				</row>
@@ -69,8 +71,7 @@
 	    </div>
 	    <div class="col-lg-12">
 	    	<br>
-	    	<button class="btn btn-success" type="button" id="open" onclick="openws()">Open WS Connection</button>
-	    	<button class="btn btn-warning" type="button" id="close">Close WS Connection</button>
+	    	<button class="btn btn-danger" type="button" id="close">Close WS Connection</button>
     	</div>
     </div>
 
@@ -598,7 +599,8 @@
 		var closeBtn = document.getElementById('close');
 
 		// Create a new WebSocket
-		var socket = new WebSocket('ws://localhost:18466');
+		var daemonaddr = document.getElementById('daemon').value;
+		var socket = new WebSocket('ws://' + daemonaddr + ':18466');
 
 		// Handle any errors that occur.
 		socket.onerror = function(error) {
@@ -716,11 +718,12 @@
 
 	$("form").on('submit', function() {
 		execute = '';
-		var daemon = $('#daemon').val();
-		console.log(daemon);
+		var predaemon = $('#daemon').val();
+		var daemonrestaddr = 'http://' + predaemon + ':18469';
+		console.log(daemonrestaddr);
 		var formAction = $(this).attr('value');
 		console.log(formAction);
-		var execute = daemon + formAction;
+		var execute = daemonrestaddr + formAction;
 		console.log(execute);
 		$(this).attr('action', execute);
 	});
