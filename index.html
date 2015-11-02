@@ -600,7 +600,7 @@
 
 		// Create a new WebSocket
 		var daemonaddr = document.getElementById('daemon').value;
-		var socket = new WebSocket('wss://' + daemonaddr + ':18466');
+		var socket = new WebSocket('ws://' + daemonaddr + ':18466');
 
 		// Handle any errors that occur.
 		socket.onerror = function(error) {
