@@ -14,7 +14,7 @@
 <body>
 <div class="container">
     
-  	<div class="row marketing"><img class="col-lg-12" src="http://i.imgur.com/Vrbvrfa.png"></div>
+  	<div class="row marketing"><img class="col-lg-12 col-xs-12" src="http://i.imgur.com/Vrbvrfa.png"></div>
     <div class="header clearfix">
     	<h2 class="text-muted">OpenBazaar API Tools</h2>
   	</div>
@@ -33,7 +33,7 @@
   		<p>To connect to your remote server, run the OpenBazaar server with the following command:<p>
   		<p><mark>$ python openbazaard.py start -t -r [IP address of your server]</mark>.</p>
   		<p>Please note that running the server this way is <b>not secure</b>, and for testing purposes only. I've tested this with Digital Ocean + Ubuntu 14.04, and it works great.</p>
-  		<h4>Server address:</h4>
+  		<h4>Server IP Address:</h4>
   		<p><input id="daemon" class="col-lg-7" value="localhost" /></p>
   	</div>
 
@@ -123,14 +123,14 @@
     	<div class="col-lg-12">
 			<form value="/api/v1/get_followers" method="get" enctype="multipart/form-data" id="get_followers" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Get Followers:</row>
-				<row class="col-lg-7"><input id="get_user_followers" name="guid" autocomplete="off" placeholder="GUID"></row><br>
+				<row class="col-lg-7"><input id="get_user_followers" name="guid" autocomplete="off" placeholder="GUID" required></row><br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
 			</form>
 			<br>
 			<br>
 			<form value="/api/v1/get_following" method="get" enctype="multipart/form-data" id="get_following" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Get Following:</row>
-				<row class="col-lg-7"><input id="get_user_following" name="guid" autocomplete="off" placeholder=" GUID"></row><br>
+				<row class="col-lg-7"><input id="get_user_following" name="guid" autocomplete="off" placeholder=" GUID" required></row><br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
 			</form>
 		</div>
@@ -279,7 +279,7 @@
     	<div class="col-lg-12">
 			<form value="/api/v1/follow" method="post" enctype="multipart/form-data" id="follow" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Follow:</row>
-				<row class="col-lg-7"><input id="follow_user" name="guid" autocomplete="off" placeholder=" GUID" id="followme" required></row></br></br>
+				<row class="col-lg-7"><input id="follow_user" name="guid" autocomplete="off" placeholder=" GUID" required></row></br></br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Follow" id="yo"/></row>
 			</form>
 		</div>
@@ -287,7 +287,7 @@
 		<div class="col-lg-12">
 			<form value="/api/v1/unfollow" method="post" enctype="multipart/form-data" id="unfollow" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Unfollow:</row>
-				<row class="col-lg-7"><input id="unfollow_user" name="guid" autocomplete="off" placeholder=" GUID" id="unfollowme" required></row></br></br>
+				<row class="col-lg-7"><input id="unfollow_user" name="guid" autocomplete="off" placeholder=" GUID" required></row></br></br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Unfollow"/></row>
 			</form>
 		</div>
