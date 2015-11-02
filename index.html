@@ -35,9 +35,10 @@
   		<p>Please note that running the server this way is <b>not secure</b>, and for testing purposes only. I've tested this with Digital Ocean + Ubuntu 14.04, and it works great.</p>
   		<h4>Server IP Address:</h4>
   		<p><input id="daemon" class="col-lg-7" value="localhost" /></p>
+  		<br>
   		<h3>Known Bugs</h3>
   		<ul>
-  			<li>Websockets won't work with <mark>https</mark>, only <mark>http</mark>. You're better off cloning the repo into your machine and running the index.html file directly</li>
+  			<li>Websockets won't work with <mark>https</mark>, only <mark>http</mark>. You're better off cloning the repo into your machine and running the <mark>index.html</mark> file directly</li>
   			<li>To update anything in your profile, you have to enter in all your data again. Working on this.</li>
 		</ul>
   	</div>
@@ -414,6 +415,8 @@
 			<h4>Order Details</h4>
 			<row class="col-lg-5">Contract ID (hash):</row>
 			<row class="col-lg-7"><input id="order_id" name="id" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Vendor GUID:</row>
+			<row class="col-lg-7"><input id="order_vendor_guid" name="guid" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Quantity:</row>
 			<row class="col-lg-7"><input id="order_quantity" name="quantity" type="number" min="1" autocomplete="off" required></row></br></br>
 			<h4>Buyer Details</h4>
