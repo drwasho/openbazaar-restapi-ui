@@ -39,7 +39,6 @@
   		<h3>Known Bugs</h3>
   		<ul>
   			<li>Websockets won't work with <mark>https</mark>, only <mark>http</mark>. You're better off cloning the repo into your machine and running the <mark>index.html</mark> file directly</li>
-  			<li>To update anything in your profile, you have to enter in all your data again. Working on this.</li>
 		</ul>
   	</div>
 
@@ -192,19 +191,15 @@
   	<hr></hr>
 	<h3>Update Your Profile</h3>
 	<div class="col-lg-12">
-		<form value="/api/v1/profile" method="post" enctype="multipart/form-data" id="profile" class="navbar-form" target="_blank">
+		<form value="/api/v1/profile" method="post" enctype="multipart/form-data" id="profile" class="navbar-form" target="_blank" onsubmit="sanity()">
 			<row class="col-lg-5">Name:</row>
-			<row class="col-lg-7"><input id="name" name="name" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="name" autocomplete="off"></row></br></br>
 			<row class="col-lg-5">Handle:</row>
-			<row class="col-lg-7"><input id="handle" name="handle" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="handle" autocomplete="off"></row></br></br>
 			<row class="col-lg-5">About:</row>
-			<row class="col-lg-7"><input id="about" name="about" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="about" autocomplete="off"></row></br></br>
 			<row class="col-lg-5">Short Description:</row>
-			<row class="col-lg-7"><input id="short_description" name="short_description" autocomplete="off" required></row></br></br>
-			<row class="col-lg-5">Avatar (image hash):</row>
-			<row class="col-lg-7"><input id="avatar_image_hash" name="avatar" autocomplete="off" required></row></br></br>
-			<row class="col-lg-5">Header (image hash):</row>
-			<row class="col-lg-7"><input id="header_image_hash" name="header" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="short_description" autocomplete="off"></row></br></br>
 			<row class="col-lg-5">Location:</row>
 			<row class="col-lg-7">
 				<select id="location" name="location" >
@@ -214,9 +209,9 @@
 				</select>
 			</row></br></br>
 			<row class="col-lg-5">Website:</row>
-			<row class="col-lg-7"><input id="website" name="website" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="website" autocomplete="off"></row></br></br>
 			<row class="col-lg-5">Email:</row>
-			<row class="col-lg-7"><input id="email" name="email" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="email" autocomplete="off"></row></br></br>
 			<row class="col-lg-5">Vendor:</row>
 			<row class="col-lg-7">
 				<select id="vendor" name="vendor" >
@@ -232,7 +227,7 @@
 				</select>
 			</row></br></br>
 			<row class="col-lg-5">Add a Moderator:</row>
-			<row class="col-lg-7"><input id="choose_mod" name="moderator_list" autocomplete="off"></row></br></br>
+			<row class="col-lg-7"><input id="choose_mod" autocomplete="off"></row></br></br>
 			<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit"/></row>
 		</form>
     </div>
@@ -415,8 +410,6 @@
 			<h4>Order Details</h4>
 			<row class="col-lg-5">Contract ID (hash):</row>
 			<row class="col-lg-7"><input id="order_id" name="id" autocomplete="off" required></row></br></br>
-			<row class="col-lg-5">Vendor GUID:</row>
-			<row class="col-lg-7"><input id="order_vendor_guid" name="guid" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Quantity:</row>
 			<row class="col-lg-7"><input id="order_quantity" name="quantity" type="number" min="1" autocomplete="off" required></row></br></br>
 			<h4>Buyer Details</h4>
@@ -520,6 +513,7 @@
 	<!-- UPLOAD IMAGES -->
   	<div class="row marketing">
 	<h3>Upload Images</h3>
+	<p>You will not be able to upload images without setting your 'name' and 'location' for your profile.</p>
     	<div class="col-lg-12">
 			<form value="/api/v1/upload_image" method="post" enctype="multipart/form-data" id="image_upload" class="navbar-form" target="_blank" onsubmit="myFunction()">
 				<row class="col-lg-5">Select Image Type:</row>
@@ -703,6 +697,30 @@
 			return false;
 		};
 
+	};
+
+	function sanity() {
+		if (document.getElementById("name").value != "") {
+			document.getElementById("name").name = "name";
+		};
+		if (document.getElementById("handle").value != "") {
+			document.getElementById("handle").name = "handle";
+		}; 
+		if (document.getElementById("about").value != "") {
+			document.getElementById("about").name = "about";
+		}; 
+		if (document.getElementById("short_description").value != "") {
+			document.getElementById("short_description").name = "short_description";
+		}; 
+		if (document.getElementById("website").value != "") {
+			document.getElementById("website").name = "website";
+		}; 
+		if (document.getElementById("email").value != "") {
+			document.getElementById("email").name = "email";
+		}; 
+		if (document.getElementById("choose_mod").value != "") {
+			document.getElementById("choose_mod").name = "moderator_list";
+		};
 	};
 
 	function test() {
