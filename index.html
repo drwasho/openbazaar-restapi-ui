@@ -318,9 +318,11 @@
 	<h3>Upload Images</h3>
 	<p>You will not be able to upload images without setting your 'name' and 'location' for your profile.</p>
     	<div class="col-lg-12">
-			<form value="/api/v1/upload_image" method="post" enctype="multipart/form-data" id="image_upload" class="navbar-form" target="_blank" name="image">
+			<form value="/api/v1/upload_image" method="post" enctype="multipart/form-data" id="image_upload" class="navbar-form" target="_blank" onsubmit="convert64()">
 				<row class="col-lg-5">Image:</row>
 				<row class="col-lg-7"><input id="image_file" type="file"></row></br></br>
+				<row class="col-lg-5">Base64:</row>
+				<row class="col-lg-7"><input id="base64text" name="image" style="background-color: lightgrey" readonly/></br></br>
 				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Upload" /></row>
 			</form>
 	    </div>
@@ -503,7 +505,7 @@
 			</select></row></br></br>
 			<h4>Moderator</h4>
 			<row class="col-lg-5">Moderator GUID:</row>
-			<row class="col-lg-7"><input id="order_buyer_guid" name="moderator" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="order_buyer_guid" name="moderator" autocomplete="off"></row></br></br>
 			<row class="col-lg-12"><input class="btn btn-success col-lg-2" type="submit" value="Place Order"></row>
 		</form>
 	</div>
@@ -626,6 +628,8 @@
 
 <!-- REST API Form Script -->
 <script>
+	
+	/*Websockets*/
 	function openws() {
 
 		// Get references to elements on the page.
@@ -646,6 +650,7 @@
 		// Show a connected message when the WebSocket is opened.
 		socket.onopen = function(event) {
 			console.log('Socket is open!');
+			document.getElementById('terminal').value = 'Socket it open!';
 		};
 
 		// Handle messages sent by the server.
@@ -727,12 +732,38 @@
 
 			// Close the WebSocket.
 			socket.close();
+			document.getElementById('terminal').value = 'Socket is closed!';
 
 			return false;
 		};
 
 	};
 
+	/*Convert images to base64*/
+	var handleFileSelect = function(evt) {
+    var files = evt.target.files;
+    var file = files[0];
+
+    if (files && file) {
+        var reader = new FileReader();
+
+        reader.onload = function(readerEvt) {
+            var binaryString = readerEvt.target.result;
+            var base64image = btoa(binaryString);
+            document.getElementById('base64text').value = base64image;
+        };
+
+        reader.readAsBinaryString(file);
+    	}
+	};
+
+	if (window.File && window.FileReader && window.FileList && window.Blob) {
+	    document.getElementById('image_file').addEventListener('change', handleFileSelect, false);
+	} else {
+	    alert('The File APIs are not fully supported in this browser.');
+	};
+
+	/*Removes fields from being submitted into the form if they're blank*/
 	function sanity() {
 		if (document.getElementById("name").value != "") {
 			document.getElementById("name").name = "name";
@@ -757,6 +788,7 @@
 		};
 	};
 
+	/*Loads some template data to create a contract*/
 	function test() {
 		document.getElementById("listing_title").value = "Crap";
 		document.getElementById("listing_description").value = "Quality dog crap";
@@ -775,6 +807,7 @@
 		document.getElementById("listing_add_moderators").value = "b446f60831850c2bbe2b9b1af31b50adf4295979";
 	};
 
+	/*Select IP address for the server daemon other than localhost by default*/
 	$("form").on('submit', function() {
 		execute = '';
 		var predaemon = $('#daemon').val();
@@ -785,13 +818,6 @@
 		var execute = daemonrestaddr + formAction;
 		console.log(execute);
 		$(this).attr('action', execute);
-	});
-
-	$(document).ready(function() {
-		$('.remove-empty-values').submit(function() {
-			$(this).find(':input').filter(function() { return !this.value; }).attr('disabled', 'disabled');
-			return true; // make sure that the form is still submitted
-		});
 	});
 	
 </script>
