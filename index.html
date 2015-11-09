@@ -294,6 +294,73 @@
 		</div>
 	</div>
 
+	<!-- IMAGES -->
+	<!-- VIEW IMAGES -->
+  	<div class="row marketing">
+  	<br>
+	<h1 align="right"><b>Images</b></h1>
+	<hr></hr>
+	<h3>View Images</h3>
+    	<div class="col-lg-12">
+			<form value="/api/v1/get_image" method="get" enctype="multipart/form-data" id="get_image" class="navbar-form" target="_blank">
+				<row class="col-lg-12"><label>If the GUID field is empty, your own images will be queried.</label></row></br></br>
+				<row class="col-lg-5">GUID:</row>
+				<row class="col-lg-7"><input id="image_target_guid" name="guid"></row></br></br>
+				<row class="col-lg-5">Image Hash:</row>
+				<row class="col-lg-7"><input id="target_image_hash" name="hash" required></row></br></br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="View" /></row>
+			</form>
+	    </div>
+    </div>
+
+	<!-- UPLOAD IMAGES -->
+  	<div class="row marketing">
+	<h3>Upload Images</h3>
+	<p>You will not be able to upload images without setting your 'name' and 'location' for your profile.</p>
+    	<div class="col-lg-12">
+			<form value="/api/v1/upload_image" method="post" enctype="multipart/form-data" id="image_upload" class="navbar-form" target="_blank" name="image">
+				<row class="col-lg-5">Image:</row>
+				<row class="col-lg-7"><input id="image_file" type="file"></row></br></br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Upload" /></row>
+			</form>
+	    </div>
+    </div>
+
+    <!-- NOTIFICATIONS -->
+    <!-- NOTIFICATION CENTRE -->
+    <div class="row marketing">
+	</br>
+    <h1 align="right"><b>Notifications</b></h1>
+    <hr></hr>
+
+    <h3><b>Commands</b></h3>
+    <div class="col-lg-12">
+    	<form value="/api/v1/get_notifications" method="get" enctype="multipart/form-data" id="get_notifications" class="navbar-form" target="_blank">
+    		<h4>Get Notifications</h4>
+    		<row class="col-lg-12"><input class="btn btn-info" type="submit" value="Retrieve" /></row></br></br>
+		</form>
+    </div>
+
+    <div class="col-lg-12">
+    	<form value="/api/v1/mark_notification_as_read" method="post" enctype="multipart/form-data" id="get_notifications" class="navbar-form" target="_blank">
+    		<h4>Mark Notification as Read</h4>
+			<row class="col-lg-5">Notification ID:</row>
+    		<row class="col-lg-7"><input id="notification_id" name="id" required></row></br></br>
+    		<row class="col-lg-12"><input class="btn btn-danger" type="submit" value="Mark as Read" /></row></br></br>
+		</form>
+    </div>
+
+    <div class="col-lg-12">
+    	<form value="/api/v1/send_notification" method="post" enctype="multipart/form-data" id="send_notification" class="navbar-form" target="_blank">
+    		<h4>Send Notification</h4>
+			<row class="col-lg-5">Message:</row>
+    		<row class="col-lg-7"><input class="col-lg-12" id="notification_message" name="message" required></row></br></br>
+    		<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Send Message" /></row>
+		</form>
+    </div>    
+
+    </div>
+
     <!-- MARKET -->
     <!-- STAGE 1: CREATE LISTING -->
 	<div class="row marketing">
@@ -391,7 +458,13 @@
 			<row class="col-lg-5">Expiration:</row>
 			<row class="col-lg-7"><input id="listing_exp_date" name="expiration_date" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Metadata Category:</row>
-			<row class="col-lg-7"><input id="listing_meta_category" name="metadata_category" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7">
+				<select id="listing_meta_category" name="metadata_category">
+					<option value="Physical Good">Physical Good</option>
+					<option value="Digital Content">Digital Content</option>
+					<option value="Services">Services</option>
+				</select>
+			</row></br></br>
 
 			<!-- SUBMIT BUTTON -->
 			<row class="col-lg-12"><button class="btn btn-warning col-lg-2" type="button" onclick="test()" value="Test">Test</button></row>
@@ -491,45 +564,6 @@
 		</form>
 	</div>
 	</div>
-
-	<!-- VIEW IMAGES -->
-  	<div class="row marketing">
-  	<br>
-	<h1 align="right"><b>Images</b></h1>
-	<hr></hr>
-	<h3>View Images</h3>
-    	<div class="col-lg-12">
-			<form value="/api/v1/get_image" method="get" enctype="multipart/form-data" id="get_image" class="navbar-form" target="_blank">
-				<row class="col-lg-12"><label>If the GUID field is empty, your own images will be queried.</label></row></br></br>
-				<row class="col-lg-5">GUID:</row>
-				<row class="col-lg-7"><input id="image_target_guid" name="guid"></row></br></br>
-				<row class="col-lg-5">Image Hash:</row>
-				<row class="col-lg-7"><input id="target_image_hash" name="hash" required></row></br></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="View" /></row>
-			</form>
-	    </div>
-    </div>
-
-	<!-- UPLOAD IMAGES -->
-  	<div class="row marketing">
-	<h3>Upload Images</h3>
-	<p>You will not be able to upload images without setting your 'name' and 'location' for your profile.</p>
-    	<div class="col-lg-12">
-			<form value="/api/v1/upload_image" method="post" enctype="multipart/form-data" id="image_upload" class="navbar-form" target="_blank" onsubmit="myFunction()">
-				<row class="col-lg-5">Select Image Type:</row>
-				<row class="col-lg-7">
-					<select id="image_type" name="type">
-						<option value="image">Product Image</option>
-						<option value="avatar">Avatar</option>
-						<option value="header">Header</option>
-					</select>
-				</row></br></br>
-				<row class="col-lg-5">Image:</row>
-				<row class="col-lg-7"><input id="image_file" type="file"></row></br></br>
-				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Upload" /></row>
-			</form>
-	    </div>
-    </div>
 
     <!-- NETWORK -->
     <!-- CONNECTED PEERS -->
@@ -736,7 +770,6 @@
 		document.getElementById("listing_keywords").value = "dog crap";
 		document.getElementById("listing_shipping_origin").value = "AUSTRALIA";
 		document.getElementById("listing_exp_date").value = "2016";
-		document.getElementById("listing_meta_category").value = "Physical Good";
 		document.getElementById("listing_est_delivery_domestic").value = 3;
 		document.getElementById("listing_est_delivery_international").value = 30;
 		document.getElementById("listing_add_moderators").value = "b446f60831850c2bbe2b9b1af31b50adf4295979";
@@ -760,12 +793,6 @@
 			return true; // make sure that the form is still submitted
 		});
 	});
-
-	function myFunction() {
-    	var x = document.getElementById("image_type").value;
-    	document.getElementById("image_file").name = x;
-    	console.log(x);
-	};
 	
 </script>
 
