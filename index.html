@@ -48,14 +48,21 @@
   	<h1 align="right"><b>Websocket Panel</b></h1>
   	<hr></hr>
 	<h3>Controls</h3>
-		<div class="col-lg-12"><button class="btn btn-info" type="button" id="open" onclick="openws()">Open WS Connection</button></div>
+		<!-- Open Websockets -->
+		<div class="col-lg-12">
+			<h4>Start here</h4>
+			<button class="btn btn-info" type="button" id="open" onclick="openws()">Open WS Connection</button>
+		</div>
+		<!-- Get Vendors -->
     	<div class="col-lg-12">
 	    	<br>
 			<form action="#" method="post" id="get_vendors">
+				<h4>Discover</h4>
 				<row class="col-lg-12"><button class="btn btn-success" type="submit">Get Vendors</button>
 				</row>
 			</form>
 	    </div>
+	    <!-- Get Moderators -->
 	    <div class="col-lg-12">
 	    	<br>
 			<form action="#" method="post" id="get_moderators">
@@ -63,6 +70,7 @@
 				</row>
 			</form>
 	    </div>
+	    <!-- Get Homepage Listings -->
 	    <div class="col-lg-12">
 	    	<br>
 			<form action="#" method="post" id="get_homepage_listings">
@@ -70,10 +78,44 @@
 				</row>
 			</form>
 	    </div>
+	    <!-- Search -->
 	    <div class="col-lg-12">
 	    	<br>
-	    	<textarea class="col-lg-12" id="terminal" rows="15" placeholder="WS Output"></textarea>
+			<form action="#" method="post" id="search">
+				<h4>Search for listings</h4>
+				<row class="col-lg-5">Keywords</row>
+				<row class="col-lg-7"><input id="keywords" name="keyword" required/></row>
+				<row class="col-lg-12"><button class="btn btn-success" type="submit">Search</button>
+				</row>
+			</form>
 	    </div>
+	    <!-- Send Chat Message -->
+	    <div class="col-lg-12">
+	    	<br>
+			<form action="#" method="post" id="chat">
+				<h4>Send Chat Message</h4>
+				<row class="col-lg-5">GUID</row>
+				<row class="col-lg-7"><input id="chat_guid" name="guid" /></row><br><br>
+				<row class="col-lg-5">Handle</row>
+				<row class="col-lg-7"><input id="chat_handle" name="handle" /></row><br><br>
+				<row class="col-lg-5">Message</row>
+				<row class="col-lg-7"><input id="chat_message" name="message" /></row><br><br>
+				<row class="col-lg-5">Subject</row>
+				<row class="col-lg-7"><input id="chat_subject" name="subject" /></row><br><br>
+				<row class="col-lg-5">Message Type</row>
+				<row class="col-lg-7"><input id="chat_msgtype" name="message_type" /></row><br><br>
+				<row class="col-lg-5">Key</row>
+				<row class="col-lg-7"><input id="chat_key" name="recipient_key" disabled /></row><br><br>
+				<row class="col-lg-8"><button class="btn btn-success" type="submit">Send Chat</button>
+				</row>
+			</form>
+	    </div>
+	    <!-- Websocket Output -->
+	    <div class="col-lg-12">
+	    	<br>
+	    	<textarea class="col-lg-12" id="terminal" rows="15" placeholder="Websocket Output"></textarea>
+	    </div>
+	    <!-- Close Websocket -->
 	    <div class="col-lg-12">
 	    	<br>
 	    	<button class="btn btn-danger" type="button" id="close">Close WS Connection</button>
@@ -380,7 +422,7 @@
 			<row class="col-lg-5">Description:</row>
 			<row class="col-lg-7"><input id="listing_description" name="description" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Price:</row>
-			<row class="col-lg-7"><input id="listing_price" type="number" name="price" autocomplete="off" required></row></br></br>
+			<row class="col-lg-7"><input id="listing_price" type="float" name="price" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Currency Code:</row>
 			<row class="col-lg-7"><input id="listing_currency_code" name="currency_code" autocomplete="off" value="BTC" required></row></br></br>
 			<row class="col-lg-5">Category:</row>
@@ -496,6 +538,8 @@
 			<row class="col-lg-7"><input id="order_buyer_city" name="city" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">State:</row>
 			<row class="col-lg-7"><input id="order_buyer_state" name="state" autocomplete="off" required></row></br></br>
+			<row class="col-lg-5">Postcode:</row>
+			<row class="col-lg-7"><input id="order_postcode" name="postal_code" autocomplete="off" type="number" required></row></br></br>
 			<row class="col-lg-5">Country:</row>
 			<row class="col-lg-7"><select id="order_buyer_country" name="country" required>
 			<option value="UNITED_STATES">United States</option>
@@ -519,7 +563,7 @@
 		<form value="/api/v1/confirm_order" method="post" enctype="multipart/form-data" id="confirm_order" class="navbar-form" target="_blank">
 			<h4>Order Details</h4>
 			<row class="col-lg-5">Select order:</row>
-			<row class="col-lg-7"><input id="order_file" name="id"></row></br></br>
+			<row class="col-lg-7"><input id="confirm_id" name="id"></row></br></br>
 			<row class="col-lg-5">Payout Address:</row>
 			<row class="col-lg-7"><input id="payout_address" name="payout_address" autocomplete="off" required></row></br></br>
 			<row class="col-lg-5">Comments:</row>
@@ -590,11 +634,77 @@
 	</div>
 
     <!-- SETTINGS -->
-    <!-- SHUTDOWN -->
 	<div class="row marketing">
 	<br>
 	<h1 align="right"><b>Settings</b></h1>
 	<hr></hr>
+	<!-- VIEW SETTINGS -->
+	<h3>View Settings</h3>
+	<div class="col-lg-12">
+		<form value="/api/v1/settings" method="get" enctype="multipart/form-data" id="get_settings" class="navbar-form" target="_blank">
+			<row class="col-lg-12"><input class="btn btn-info" type="submit" value="View Settings" /></row>
+		</form>
+	</div>
+	<row class="col-lg-12"><br></row>
+	<!-- NODE SETTINGS -->
+	<h3>Change Settings</h3>
+	<p><b>Note:</b> All fields are required for this form to be submitted!</p>
+	<div class="col-lg-12">
+		<form value="/api/v1/settings" method="post" enctype="multipart/form-data" id="post_settings" class="navbar-form" target="_blank" onsubmit="sanity2()">
+			<row class="col-lg-5">Refund Address</row>
+			<row class="col-lg-7"><input id="settings_refundaddr" name="refund_address" required/></row></br></br>
+			<row class="col-lg-5">Currency Code</row>
+			<row class="col-lg-7">
+				<select id="settings_currencycode" name="currency_code">
+					<option value="BTC">Bitcoin</option>
+					<option value="USD">US Dollar</option>
+					<option value="AUD">Australian Dollar</option>
+				</select>
+			</row></br></br>
+			<row class="col-lg-5">Country</row>
+			<row class="col-lg-7">
+				<select id="settings_country" name="country">
+					<option value="AUSTRALIA">Australia</option>
+					<option value="UNITED_STAGES">United States</option>
+				</select>
+			</row></br></br>
+			<row class="col-lg-5">Language</row>
+			<row class="col-lg-7">
+				<select id="settings_language" name="lanuage">
+					<option value="ENGLISH">English</option>
+				</select>
+			</row></br></br>
+			<row class="col-lg-5">Time Zone</row>
+			<row class="col-lg-7"><input id="settings_timezone" name="time_zone" required/></row></br></br>
+			<row class="col-lg-5">Notifications</row>
+			<row class="col-lg-7">
+				<select id="settings_notifications" name="notifications">
+					<option value="TRUE">True</option>
+					<option value="FALSE">False</option>
+				</select>
+			</row></br></br>
+			<row class="col-lg-5">Shipping Addresses</row>
+			<row class="col-lg-7"><input id="settings_shipaddr" name="shipping_addresses" required/></row></br></br>
+			<row class="col-lg-5">Blocked Nodes</row>
+			<row class="col-lg-7"><input id="settings_blocked" name="blocked" required/></row></br></br>
+			<row class="col-lg-5">Libbitcoin Server</row>
+			<row class="col-lg-7"><input id="settings_libbitcoin" name="libbitcoin_server" required/></row></br></br>
+			<row class="col-lg-5">SSL</row>
+			<row class="col-lg-7">
+				<select id="settings_ssl" name="ssl">
+					<option value="TRUE">True</option>
+					<option value="FALSE">False</option>
+				</select>
+			</row></br></br>
+			<row class="col-lg-5">Terms and Conditions</row>
+			<row class="col-lg-7"><input id="settings_tc" name="terms_conditions"/></row></br></br>
+			<row class="col-lg-5">Refund Policy</row>
+			<row class="col-lg-7"><input id="settings_refund" name="refund_policy"/></row></br></br>
+			<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Submit" /></row>
+		</form>
+	</div>
+	<row class="col-lg-12"><br></row>
+	<!-- SHUTDOWN -->
 	<h3>Safe Node Shutdown</h3>
 	<div class="col-lg-12">
 		<form value="/api/v1/shutdown" method="get" enctype="multipart/form-data" id="shutdown" class="navbar-form navbar-left" target="_blank">
@@ -602,13 +712,6 @@
 		</form>
 	</div>
 	<row class="col-lg-12"><br></row>
-	<!-- VIEW NODE SETTINGS -->
-	<h3>View Node Settings</h3>
-	<div class="col-lg-12">
-		<form value="/api/v1/settings" method="get" enctype="multipart/form-data" id="get_settings" class="navbar-form" target="_blank">
-			<row class="col-lg-12"><input class="btn btn-info" type="submit" value="View" /></row>
-		</form>
-    </div>
     </div>
 
 	</br>
@@ -636,6 +739,8 @@
 		var getvendorsform = document.getElementById('get_vendors');
 		var getmoderatorsform = document.getElementById('get_moderators');
 		var getlistingsform = document.getElementById('get_homepage_listings');
+		var searchform = document.getElementById('search');
+		var chatform = document.getElementById('chat');
 		var closeBtn = document.getElementById('close');
 
 		// Create a new WebSocket
@@ -670,10 +775,9 @@
 		getvendorsform.onsubmit = function(e) {
 			document.getElementById('terminal').value = '';
 
-			e.preventDefault();
 
 			// Message Details
-			var message = {"request": {
+			var vendors_message = {"request": {
 	      		"api": "v1",
 	      		"id" : Math.floor((Math.random() * 10000) + 1),
 	      		"guid": "39805f8892e0187d26ec8970e245f12a78bd8f6f",
@@ -681,7 +785,7 @@
 	    		}};
 
 		    // Send the message through the WebSocket.
-	    	socket.send(JSON.stringify(message));
+	    	socket.send(JSON.stringify(vendors_message));
 
 			return false;
 		};
@@ -693,7 +797,7 @@
 			e.preventDefault();
 
 			// Message Details
-			var message = {"request": {
+			var mods_message = {"request": {
 	      		"api": "v1",
 	      		"id" : Math.floor((Math.random() * 10000) + 1),
 	      		"guid": "39805f8892e0187d26ec8970e245f12a78bd8f6f",
@@ -701,7 +805,7 @@
 	    		}};
 
 		    // Send the message through the WebSocket.
-	    	socket.send(JSON.stringify(message));
+	    	socket.send(JSON.stringify(mods_message));
 
 			return false;
 		};
@@ -713,15 +817,67 @@
 			e.preventDefault();
 
 			// Message Details
-			var message = {"request": {
+			var home_message = {"request": {
 	      		"api": "v1",
 	      		"id" : Math.floor((Math.random() * 100000) + 1),
-	      		"guid": "39805f8892e0187d26ec8970e245f12a78bd8f6f",
+	      		"guid" : "39805f8892e0187d26ec8970e245f12a78bd8f6f",
 	      		"command": "get_homepage_listings"
 	    		}};
 
 		    // Send the message through the WebSocket.
-	    	socket.send(JSON.stringify(message));
+	    	socket.send(JSON.stringify(home_message));
+
+			return false;
+		};
+
+		// Search on the network
+		searchform.onsubmit = function(e) {
+			document.getElementById('terminal').value = '';
+
+			e.preventDefault();
+
+			// Keywords
+			var daskeywords = document.getElementById('keywords').value;
+			var search_message = {"request": {
+				"api" : "v1",
+				"id" : Math.floor((Math.random() * 100000) + 1),
+				"guid" : "39805f8892e0187d26ec8970e245f12a78bd8f6f",
+				"command" : "search",
+				"keyword" : daskeywords
+			}};
+
+			// Send the message through the WebSocket.
+			socket.send(JSON.stringify(search_message));
+
+			return false;
+		};
+
+		// Send a chat message
+		chatform.onsubmit = function(e) {
+			document.getElementById('terminal').value = '';
+
+			e.preventDefault();
+
+			// Chat details
+			var chat_guid = document.getElementById('chat_guid').value;
+			var chat_handle = document.getElementById('chat_handle').value;
+			var chat_message = document.getElementById('chat_message').value;
+			var chat_subject = document.getElementById('chat_subject').value;
+			var chat_msgtype = document.getElementById('chat_msgtype').value;
+			var chat_key = document.getElementById('chat_key').value;
+			var im_message = {"request": {
+				"api" : "v1",
+				"command" : "send_message",
+				"guid" : chat_guid,
+				"handle" : chat_handle,
+				"message" : chat_message,
+				"subject" : chat_subject,
+				"message_type" : chat_msgtype,
+				"recipient_key" : "163ec30a409fc9fe2c752192cea212316a29d02c9c3c85430ac90501b3987412"
+			}};
+
+			// Send the message through the Websocket.
+			socket.send(JSON.stringify(im_message));
 
 			return false;
 		};
