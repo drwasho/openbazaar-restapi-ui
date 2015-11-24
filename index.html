@@ -9,6 +9,71 @@
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<!-- PapaParse CDN -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js"></script>
+
+	<script>
+		var shopify;
+		var etsy;
+
+		function handleFileSelectshopify(evt) {
+			var shopify_file = evt.target.files[0];
+
+			Papa.parse(shopify_file, {
+				header: true,
+				dynamicTyping: true,
+				complete: function(results) {
+					shopify = results;
+					}
+				});
+		};
+
+		function handleFileSelectetsy(evt) {
+			var etsy_file = evt.target.files[0];
+
+			Papa.parse(etsy_file, {
+				header: true,
+				dynamicTyping: true,
+				complete: function(results) {
+					etsy = results;
+					}
+				});
+		};
+
+		function handleFileSelect2(evt) {
+			var files = evt.target.files;
+		    var dasfile = files[0];
+
+		    if (files && dasfile) {
+		        var reader = new FileReader();
+
+		        reader.onload = function(readerEvt) {
+		            var binaryString = readerEvt.target.result;
+		            var base64image = btoa(binaryString);
+		            document.getElementById('base64text').value = base64image;
+		        };
+
+		        reader.readAsBinaryString(dasfile);
+		    	}
+		};
+
+		$(document).ready(function() {
+			$("#shopify-file").change(handleFileSelectshopify);
+		});
+
+		$(document).ready(function() {
+			$("#etsy-file").change(handleFileSelectetsy);
+		});
+
+		$(document).ready(function() {
+			$("#image_file").change(handleFileSelect2);
+		});
+
+	</script>
 </head>
 
 <body>
@@ -41,6 +106,79 @@
   			<li>Websockets won't work with <mark>https</mark>, only <mark>http</mark>. You're better off cloning the repo into your machine and running the <mark>index.html</mark> file directly</li>
 		</ul>
   	</div>
+
+  	<!-- IMPORT LISTINGS FROM OTHER ECOMMERCE PLATFORMS -->
+  	<!-- EBAY -->
+  	<div class="row marketing">
+  	<h1 align="right"><b>Import Your Listings</b></h1>
+  	<hr></hr>
+	<h3>Shopify</h3>
+	<!-- Shopify -->
+	<!-- Upload Shopify CSV -->
+		<div class="col-lg-12">
+			<h4>Upload CSV file</h4>
+			<form value="/api/v1/contracts" method="post" enctype="multipart/form-data" id="shopify_upload" class="navbar-form" target="_blank" onsubmit="shopifycsv()">
+				<input id="shopify-title" name="title" hidden/>
+				<input id="shopify-description" name="description" value="yo" hidden/>
+				<input id="shopify-price" name="price" hidden/>
+				<input id="shopify-code" name="currency_code" value="USD" hidden/>
+				<input id="shopify-category" name="category" value="yo" hidden/>
+				<input id="shopify-image" name="images" value="1df789164b04d85d3190fd87271db3b69407213d" hidden/>
+				<input id="shopify-condition" name="condition" value="New" hidden/>
+				<input id="shopify-expiry" name="expiration_date" value="2015-12-31T07:34 UTC" hidden/>
+				<input id="shopify-process" name="process_time" value="3" hidden/>
+				<input id="shopify-sku" name="sku" value="01" hidden/>
+				<input id="shopify-nsfw" name="nsfw" value="true" hidden/>
+				<input id="shopify-keywords" name="keywords" value="yo" hidden/>
+				<input id="shopify-origin" name="shipping_origin" value="AUSTRALIA" hidden/>
+				<input id="shopify-shipping" name="free_shipping" value="true" hidden/>
+				<input id="shopify-domestic" name="shipping_domestic" value="true" hidden/>
+				<input id="shopify-domdel" name="est_delivery_domestic" value="3" hidden/>
+				<input id="shopify-int" name="shipping_international" value="true" hidden/>
+				<input id="shopify-indel" name="est_delivery_international" value="3" hidden/>
+				<input id="shopify-shipcurcode" name="shipping_currency_code" value="BTC" hidden/>
+				<input id="shopify-mods" name="moderators" value="49c7d33d851344be31f8e697b3e912d6820a1075" hidden/>
+				<input id="shopify-listingmeta" name="metadata_category" value="Physical Good" hidden/>
+				<input id="shopify-terms" name="terms_conditions" value="None" hidden/>
+				<input id="shopify-returns" name="returns" value="None" hidden/>
+				<row class="col-lg-7"><input type="file" id="shopify-file" name="files"/></row><br><br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Upload"/></row><br><br>
+			</form>
+		</div>
+	<h3>Etsy</h3>
+	<!-- Etsy -->
+	<!-- Upload Shopify CSV -->
+		<div class="col-lg-12">
+			<h4>Upload Etsy file</h4>
+			<form value="/api/v1/contracts" method="post" enctype="multipart/form-data" id="etsy_upload" class="navbar-form" target="_blank" onsubmit="etsycsv()">
+				<input id="etsy-title" name="title" hidden/>
+				<input id="etsy-description" name="description" value="yo" hidden/>
+				<input id="etsy-price" name="price" hidden/>
+				<input id="etsy-code" name="currency_code" value="USD" hidden/>
+				<input id="etsy-category" name="category" value="yo" hidden/>
+				<input id="etsy-image" name="images" value="1df789164b04d85d3190fd87271db3b69407213d" hidden/>
+				<input id="etsy-condition" name="condition" value="New" hidden/>
+				<input id="etsy-expiry" name="expiration_date" value="2015-12-31T07:34 UTC" hidden/>
+				<input id="etsy-process" name="process_time" hidden/>
+				<input id="etsy-sku" name="sku" value="01" hidden/>
+				<input id="etsy-nsfw" name="nsfw" value="true" hidden/>
+				<input id="etsy-keywords" name="keywords" value="yo" hidden/>
+				<input id="etsy-origin" name="shipping_origin" value="AUSTRALIA" hidden/>
+				<input id="etsy-shipping" name="free_shipping" value="true" hidden/>
+				<input id="etsy-domestic" name="shipping_domestic" value="true" hidden/>
+				<input id="etsy-domdel" name="est_delivery_domestic" value="3" hidden/>
+				<input id="etsy-int" name="shipping_international" value="true" hidden/>
+				<input id="etsy-indel" name="est_delivery_international" value="3" hidden/>
+				<input id="etsy-shipcurcode" name="shipping_currency_code" value="BTC" hidden/>
+				<input id="etsy-mods" name="moderators" value="49c7d33d851344be31f8e697b3e912d6820a1075" hidden/>
+				<input id="etsy-listingmeta" name="metadata_category" value="Physical Good" hidden/>
+				<input id="etsy-terms" name="terms_conditions" value="None" hidden/>
+				<input id="etsy-returns" name="returns" value="None" hidden/>
+				<row class="col-lg-7"><input type="file" id="etsy-file" name="files"/></row><br><br>
+				<row class="col-lg-12"><input class="btn btn-success" type="submit" value="Upload"/></row><br><br>
+			</form>
+		</div>
+    </div>
 
   	<!-- WEBSOCKET CONTROL PANEL -->
   	<!-- DISCOVERY -->
@@ -92,7 +230,7 @@
 	    <!-- Send Chat Message -->
 	    <div class="col-lg-12">
 	    	<br>
-			<form action="#" method="post" id="chat">
+			<form action="#" method="post" id="send_message">
 				<h4>Send Chat Message</h4>
 				<row class="col-lg-5">GUID</row>
 				<row class="col-lg-7"><input id="chat_guid" name="guid" /></row><br><br>
@@ -105,7 +243,7 @@
 				<row class="col-lg-5">Message Type</row>
 				<row class="col-lg-7"><input id="chat_msgtype" name="message_type" /></row><br><br>
 				<row class="col-lg-5">Key</row>
-				<row class="col-lg-7"><input id="chat_key" name="recipient_key" disabled /></row><br><br>
+				<row class="col-lg-7"><input id="chat_key" name="recipient_key" /></row><br><br>
 				<row class="col-lg-8"><button class="btn btn-success" type="submit">Send Chat</button>
 				</row>
 			</form>
@@ -360,7 +498,7 @@
 	<h3>Upload Images</h3>
 	<p>You will not be able to upload images without setting your 'name' and 'location' for your profile.</p>
     	<div class="col-lg-12">
-			<form value="/api/v1/upload_image" method="post" enctype="multipart/form-data" id="image_upload" class="navbar-form" target="_blank" onsubmit="convert64()">
+			<form value="/api/v1/upload_image" method="post" enctype="multipart/form-data" id="image_upload" class="navbar-form" target="_blank">
 				<row class="col-lg-5">Image:</row>
 				<row class="col-lg-7"><input id="image_file" type="file"></row></br></br>
 				<row class="col-lg-5">Base64:</row>
@@ -670,8 +808,8 @@
 			</row></br></br>
 			<row class="col-lg-5">Language</row>
 			<row class="col-lg-7">
-				<select id="settings_language" name="lanuage">
-					<option value="ENGLISH">English</option>
+				<select id="settings_language" name="language">
+					<option value="en">English</option>
 				</select>
 			</row></br></br>
 			<row class="col-lg-5">Time Zone</row>
@@ -686,9 +824,9 @@
 			<row class="col-lg-5">Shipping Addresses</row>
 			<row class="col-lg-7"><input id="settings_shipaddr" name="shipping_addresses" required/></row></br></br>
 			<row class="col-lg-5">Blocked Nodes</row>
-			<row class="col-lg-7"><input id="settings_blocked" name="blocked" required/></row></br></br>
+			<row class="col-lg-7"><input id="settings_blocked" name="blocked"/></row></br></br>
 			<row class="col-lg-5">Libbitcoin Server</row>
-			<row class="col-lg-7"><input id="settings_libbitcoin" name="libbitcoin_server" required/></row></br></br>
+			<row class="col-lg-7"><input id="settings_libbitcoin" name="libbitcoin_server"/></row></br></br>
 			<row class="col-lg-5">SSL</row>
 			<row class="col-lg-7">
 				<select id="settings_ssl" name="ssl">
@@ -723,13 +861,8 @@
 
 </div> <!-- /container -->
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-<!-- REST API Form Script -->
+<!-- REST and WS API Form Scripts -->
 <script>
 	
 	/*Websockets*/
@@ -740,7 +873,7 @@
 		var getmoderatorsform = document.getElementById('get_moderators');
 		var getlistingsform = document.getElementById('get_homepage_listings');
 		var searchform = document.getElementById('search');
-		var chatform = document.getElementById('chat');
+		var chatform = document.getElementById('send_message');
 		var closeBtn = document.getElementById('close');
 
 		// Create a new WebSocket
@@ -867,14 +1000,17 @@
 			var chat_key = document.getElementById('chat_key').value;
 			var im_message = {"request": {
 				"api" : "v1",
+				"id" : Math.floor((Math.random() * 100000) + 1),
 				"command" : "send_message",
 				"guid" : chat_guid,
 				"handle" : chat_handle,
 				"message" : chat_message,
+				"INTEGER" : Math.floor((Math.random() * 100000) + 1),
 				"subject" : chat_subject,
-				"message_type" : chat_msgtype,
-				"recipient_key" : "163ec30a409fc9fe2c752192cea212316a29d02c9c3c85430ac90501b3987412"
+				"message_type" : "CHAT",
+				"recipient_key" : chat_key
 			}};
+			console.log(JSON.stringify(im_message));
 
 			// Send the message through the Websocket.
 			socket.send(JSON.stringify(im_message));
@@ -895,29 +1031,6 @@
 
 	};
 
-	/*Convert images to base64*/
-	var handleFileSelect = function(evt) {
-    var files = evt.target.files;
-    var file = files[0];
-
-    if (files && file) {
-        var reader = new FileReader();
-
-        reader.onload = function(readerEvt) {
-            var binaryString = readerEvt.target.result;
-            var base64image = btoa(binaryString);
-            document.getElementById('base64text').value = base64image;
-        };
-
-        reader.readAsBinaryString(file);
-    	}
-	};
-
-	if (window.File && window.FileReader && window.FileList && window.Blob) {
-	    document.getElementById('image_file').addEventListener('change', handleFileSelect, false);
-	} else {
-	    alert('The File APIs are not fully supported in this browser.');
-	};
 
 	/*Removes fields from being submitted into the form if they're blank*/
 	function sanity() {
@@ -961,6 +1074,21 @@
 		document.getElementById("listing_est_delivery_domestic").value = 3;
 		document.getElementById("listing_est_delivery_international").value = 30;
 		document.getElementById("listing_add_moderators").value = "b446f60831850c2bbe2b9b1af31b50adf4295979";
+	};
+
+	/*Pulls data from Shopify CSV listing*/
+	function shopifycsv() {
+		document.getElementById("shopify-title").value = shopify.data[0,0].Title;
+		document.getElementById("shopify-description").value = shopify.data[0,0]["SEO Description"];
+		document.getElementById("shopify-price").value = shopify.data[0,0]["Variant Price"];
+	};
+
+	/*Pulls data from Etsy CSV listing*/
+	function etsycsv() {
+		document.getElementById("etsy-title").value = etsy.data[0,0].title;
+		document.getElementById("etsy-description").value = etsy.data[0,0].description;
+		document.getElementById("etsy-price").value = etsy.data[0,0].price;
+		document.getElementById("etsy-process").value = etsy.data[0,0]["processing_max"];
 	};
 
 	/*Select IP address for the server daemon other than localhost by default*/
